@@ -1,0 +1,70 @@
+{
+  "format": "SciVault-QF",
+  "format_version": "0.1",
+
+  "metadata": {
+    "id": "org.scivault.conformance.missing-media",
+    "title": "Missing Media Error Test",
+    "description": "Invalid SciVault-QF 0.1 question containing a reference to a local media resource that does not exist.",
+    "author": "SciVault",
+    "license": "CC0-1.0",
+    "version": "1.0",
+    "language": "en-US",
+    "tags": [
+      "conformance",
+      "invalid",
+      "media"
+    ],
+    "created": "2026-08-19T12:46:00-06:00"
+  },
+
+  "questions": [
+    {
+      "id": "q001",
+      "type": "multiple_choice",
+
+      "question": "Which answer best describes the diagram?",
+
+      "media": [
+        {
+          "id": "missing-diagram",
+          "type": "image",
+          "src": "media/does-not-exist.svg",
+          "alt": "A deliberately missing diagram used to test SciVault-QF validation.",
+          "caption": "This resource intentionally does not exist.",
+          "license": "CC0-1.0"
+        }
+      ],
+
+      "choices": [
+        {
+          "id": "A",
+          "text": "Option A"
+        },
+        {
+          "id": "B",
+          "text": "Option B"
+        },
+        {
+          "id": "C",
+          "text": "Option C"
+        }
+      ],
+
+      "answer": "B",
+
+      "explanation": "The instructional content is irrelevant to this fixture; the missing media reference is the intended validation error.",
+
+      "difficulty": 1,
+
+      "tags": [
+        "conformance",
+        "media"
+      ],
+
+      "objectives": [
+        "CONFORMANCE.MISSING_MEDIA"
+      ]
+    }
+  ]
+}

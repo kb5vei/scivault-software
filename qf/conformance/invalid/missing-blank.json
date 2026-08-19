@@ -1,0 +1,49 @@
+{
+  "format": "SciVault-QF",
+  "format_version": "0.1",
+
+  "metadata": {
+    "id": "org.scivault.conformance.missing-blank",
+    "title": "Missing Blank Error Test",
+    "description": "Invalid SciVault-QF 0.1 fill-in-the-blank question that does not contain the required blank placeholder.",
+    "author": "SciVault",
+    "license": "CC0-1.0",
+    "version": "1.0",
+    "language": "en-US",
+    "tags": [
+      "conformance",
+      "invalid",
+      "fill-in-the-blank"
+    ],
+    "created": "2026-08-19T12:45:00-06:00"
+  },
+
+  "questions": [
+    {
+      "id": "q001",
+      "type": "fill_in_the_blank",
+
+      "question": "The SI unit of force is the newton.",
+
+      "answer": [
+        "newton",
+        "Newton",
+        "N"
+      ],
+
+      "explanation": "The SI derived unit of force is the newton, symbol N.",
+
+      "difficulty": 1,
+
+      "tags": [
+        "physics",
+        "units",
+        "force"
+      ],
+
+      "objectives": [
+        "CONFORMANCE.MISSING_BLANK"
+      ]
+    }
+  ]
+}

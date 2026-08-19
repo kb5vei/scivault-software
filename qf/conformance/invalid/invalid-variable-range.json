@@ -1,0 +1,65 @@
+{
+  "format": "SciVault-QF",
+  "format_version": "0.1",
+
+  "metadata": {
+    "id": "org.scivault.conformance.invalid-variable-range",
+    "title": "Invalid Variable Range Error Test",
+    "description": "Invalid SciVault-QF 0.1 question containing a dynamic variable whose minimum value is greater than its maximum value.",
+    "author": "SciVault",
+    "license": "CC0-1.0",
+    "version": "1.0",
+    "language": "en-US",
+    "tags": [
+      "conformance",
+      "invalid",
+      "dynamic"
+    ],
+    "created": "2026-08-19T12:43:00-06:00"
+  },
+
+  "questions": [
+    {
+      "id": "q001",
+      "type": "numerical",
+
+      "question": "An object moves at {{v}} m/s for {{t}} s. What distance does it travel?",
+
+      "variables": {
+        "v": {
+          "type": "integer",
+          "min": 10,
+          "max": 1,
+          "step": 1
+        },
+
+        "t": {
+          "type": "integer",
+          "min": 1,
+          "max": 10,
+          "step": 1
+        }
+      },
+
+      "answer": {
+        "expression": "v * t",
+        "tolerance": 0.01,
+        "unit": "m"
+      },
+
+      "explanation": "For constant speed, distance is calculated using $d=vt$.",
+
+      "difficulty": 2,
+
+      "tags": [
+        "physics",
+        "kinematics",
+        "dynamic"
+      ],
+
+      "objectives": [
+        "CONFORMANCE.INVALID_VARIABLE_RANGE"
+      ]
+    }
+  ]
+}

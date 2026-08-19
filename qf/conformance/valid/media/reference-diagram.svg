@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg
+    xmlns="http://www.w3.org/2000/svg"
+    width="600"
+    height="300"
+    viewBox="0 0 600 300"
+    role="img"
+    aria-labelledby="title desc">
+
+  <title id="title">SciVault-QF Conformance Reference Diagram</title>
+
+  <desc id="desc">
+    A simple reference diagram containing a box, a horizontal arrow,
+    and a label. This image is used for SciVault-QF conformance testing.
+  </desc>
+
+  <rect
+      x="50"
+      y="100"
+      width="120"
+      height="80"
+      fill="none"
+      stroke="black"
+      stroke-width="4" />
+
+  <line
+      x1="190"
+      y1="140"
+      x2="430"
+      y2="140"
+      stroke="black"
+      stroke-width="4" />
+
+  <polygon
+      points="430,140 400,120 400,160"
+      fill="black" />
+
+  <text
+      x="110"
+      y="145"
+      text-anchor="middle"
+      font-family="sans-serif"
+      font-size="24">
+    Object
+  </text>
+
+  <text
+      x="310"
+      y="110"
+      text-anchor="middle"
+      font-family="sans-serif"
+      font-size="22">
+    Direction
+  </text>
+
+  <text
+      x="300"
+      y="250"
+      text-anchor="middle"
+      font-family="sans-serif"
+      font-size="18">
+    SciVault-QF Conformance Test
+  </text>
+
+</svg>

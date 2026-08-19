@@ -1,0 +1,56 @@
+{
+  "format": "SciVault-QF",
+  "format_version": "0.1",
+
+  "metadata": {
+    "id": "org.scivault.conformance.invalid-true-false",
+    "title": "Invalid True False Error Test",
+    "description": "Invalid SciVault-QF 0.1 true/false question whose choice IDs are not the required true and false identifiers.",
+    "author": "SciVault",
+    "license": "CC0-1.0",
+    "version": "1.0",
+    "language": "en-US",
+    "tags": [
+      "conformance",
+      "invalid",
+      "true-false"
+    ],
+    "created": "2026-08-19T12:49:00-06:00"
+  },
+
+  "questions": [
+    {
+      "id": "q001",
+      "type": "true_false",
+
+      "question": "The watt is the SI unit of power.",
+
+      "choices": [
+        {
+          "id": "A",
+          "text": "True"
+        },
+        {
+          "id": "B",
+          "text": "False"
+        }
+      ],
+
+      "answer": "true",
+
+      "explanation": "The watt is the SI derived unit of power.",
+
+      "difficulty": 1,
+
+      "tags": [
+        "physics",
+        "units",
+        "power"
+      ],
+
+      "objectives": [
+        "CONFORMANCE.INVALID_TRUE_FALSE"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,42 @@
+\BOOKMARK [1][-]{section.1}{Scope}{}% 1
+\BOOKMARK [1][-]{section.2}{Design Goals}{}% 2
+\BOOKMARK [1][-]{section.3}{Format Identity}{}% 3
+\BOOKMARK [1][-]{section.4}{File Representation}{}% 4
+\BOOKMARK [2][-]{subsection.4.1}{Future Packages}{section.4}% 5
+\BOOKMARK [1][-]{section.5}{Document Structure}{}% 6
+\BOOKMARK [1][-]{section.6}{Question-Set Metadata}{}% 7
+\BOOKMARK [1][-]{section.7}{Identifiers}{}% 8
+\BOOKMARK [1][-]{section.8}{Common Question Structure}{}% 9
+\BOOKMARK [1][-]{section.9}{Text and Mathematical Notation}{}% 10
+\BOOKMARK [1][-]{section.10}{Difficulty}{}% 11
+\BOOKMARK [1][-]{section.11}{Tags and Learning Objectives}{}% 12
+\BOOKMARK [1][-]{section.12}{Multiple-Choice Questions}{}% 13
+\BOOKMARK [1][-]{section.13}{Multiple-Select Questions}{}% 14
+\BOOKMARK [1][-]{section.14}{True/False Questions}{}% 15
+\BOOKMARK [1][-]{section.15}{Short-Answer Questions}{}% 16
+\BOOKMARK [1][-]{section.16}{Fill-in-the-Blank Questions}{}% 17
+\BOOKMARK [1][-]{section.17}{Numerical Questions}{}% 18
+\BOOKMARK [1][-]{section.18}{Hints and Explanations}{}% 19
+\BOOKMARK [1][-]{section.19}{Media}{}% 20
+\BOOKMARK [1][-]{section.20}{Dynamic Questions}{}% 21
+\BOOKMARK [2][-]{subsection.20.1}{Integer Variables}{section.20}% 22
+\BOOKMARK [2][-]{subsection.20.2}{Decimal Variables}{section.20}% 23
+\BOOKMARK [2][-]{subsection.20.3}{Choice Variables}{section.20}% 24
+\BOOKMARK [1][-]{section.21}{Dynamic Expressions}{}% 25
+\BOOKMARK [1][-]{section.22}{Randomization}{}% 26
+\BOOKMARK [1][-]{section.23}{Extensions}{}% 27
+\BOOKMARK [1][-]{section.24}{Separation of Content and Operational Data}{}% 28
+\BOOKMARK [1][-]{section.25}{Validation}{}% 29
+\BOOKMARK [2][-]{subsection.25.1}{Validation Severity}{section.25}% 30
+\BOOKMARK [2][-]{subsection.25.2}{Structural Errors}{section.25}% 31
+\BOOKMARK [2][-]{subsection.25.3}{Semantic Errors}{section.25}% 32
+\BOOKMARK [2][-]{subsection.25.4}{Warnings}{section.25}% 33
+\BOOKMARK [2][-]{subsection.25.5}{Validation Findings}{section.25}% 34
+\BOOKMARK [1][-]{section.26}{Unsupported Features}{}% 35
+\BOOKMARK [1][-]{section.27}{Accessibility}{}% 36
+\BOOKMARK [1][-]{section.28}{Licensing}{}% 37
+\BOOKMARK [1][-]{section.29}{Question Types Defined by Version 0.1}{}% 38
+\BOOKMARK [1][-]{section.30}{Future Considerations}{}% 39
+\BOOKMARK [1][-]{section.31}{Complete Example}{}% 40
+\BOOKMARK [1][-]{section.32}{Conformance}{}% 41
+\BOOKMARK [1][-]{section.33}{Summary}{}% 42

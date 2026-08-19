@@ -1,0 +1,120 @@
+{
+  "format": "SciVault-QF",
+  "format_version": "0.1",
+
+  "metadata": {
+    "id": "org.scivault.conformance.dynamic-and-media",
+    "title": "Dynamic and Media Conformance Test",
+    "description": "Valid SciVault-QF 0.1 question set exercising dynamic variables, calculated answers, media references, and extensions.",
+    "author": "SciVault",
+    "license": "CC0-1.0",
+    "version": "1.0",
+    "language": "en-US",
+    "tags": [
+      "conformance",
+      "dynamic",
+      "media"
+    ],
+    "created": "2026-08-19T12:30:00-06:00"
+  },
+
+  "questions": [
+    {
+      "id": "q001",
+      "type": "numerical",
+
+      "question": "An object starts from rest and accelerates at {{a}} m/s^2 for {{t}} s. What is its final speed?",
+
+      "variables": {
+        "a": {
+          "type": "integer",
+          "min": 1,
+          "max": 5,
+          "step": 1
+        },
+
+        "t": {
+          "type": "integer",
+          "min": 2,
+          "max": 10,
+          "step": 1
+        }
+      },
+
+      "answer": {
+        "expression": "a * t",
+        "tolerance": 0.01,
+        "unit": "m/s"
+      },
+
+      "explanation": "For an object starting from rest, $v=at$. Substitute the generated values of $a$ and $t$.",
+
+      "difficulty": 3,
+
+      "tags": [
+        "physics",
+        "kinematics",
+        "dynamic"
+      ],
+
+      "objectives": [
+        "CONFORMANCE.DYNAMIC_NUMERICAL"
+      ]
+    },
+
+    {
+      "id": "q002",
+      "type": "multiple_choice",
+
+      "question": "Which diagram represents the situation described?",
+
+      "media": [
+        {
+          "id": "prompt-diagram",
+          "type": "image",
+          "src": "media/reference-diagram.svg",
+          "alt": "Reference diagram used by the SciVault-QF conformance test.",
+          "caption": "Conformance-test reference diagram",
+          "license": "CC0-1.0"
+        }
+      ],
+
+      "choices": [
+        {
+          "id": "A",
+          "text": "Diagram A"
+        },
+        {
+          "id": "B",
+          "text": "Diagram B"
+        },
+        {
+          "id": "C",
+          "text": "Diagram C"
+        }
+      ],
+
+      "answer": "B",
+
+      "explanation": "Diagram B is designated as the correct answer for this conformance fixture.",
+
+      "difficulty": 2,
+
+      "tags": [
+        "conformance",
+        "media"
+      ],
+
+      "objectives": [
+        "CONFORMANCE.MEDIA"
+      ],
+
+      "extensions": {
+        "org.scivault.peer_instruction": {
+          "recommended_discussion_time": 120
+        }
+      }
+    }
+  ]
+}
+```

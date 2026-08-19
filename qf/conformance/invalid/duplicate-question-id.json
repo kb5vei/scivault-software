@@ -1,0 +1,92 @@
+{
+  "format": "SciVault-QF",
+  "format_version": "0.1",
+
+  "metadata": {
+    "id": "org.scivault.conformance.duplicate-question-id",
+    "title": "Duplicate Question ID Error Test",
+    "description": "Invalid SciVault-QF 0.1 question set containing two questions with the same question ID.",
+    "author": "SciVault",
+    "license": "CC0-1.0",
+    "version": "1.0",
+    "language": "en-US",
+    "tags": [
+      "conformance",
+      "invalid"
+    ],
+    "created": "2026-08-19T12:39:00-06:00"
+  },
+
+  "questions": [
+    {
+      "id": "q001",
+      "type": "multiple_choice",
+
+      "question": "What is the SI unit of force?",
+
+      "choices": [
+        {
+          "id": "A",
+          "text": "Joule"
+        },
+        {
+          "id": "B",
+          "text": "Newton"
+        },
+        {
+          "id": "C",
+          "text": "Watt"
+        }
+      ],
+
+      "answer": "B",
+
+      "explanation": "The SI unit of force is the newton.",
+
+      "difficulty": 1,
+
+      "tags": [
+        "physics",
+        "units"
+      ],
+
+      "objectives": [
+        "CONFORMANCE.DUPLICATE_QUESTION_ID"
+      ]
+    },
+
+    {
+      "id": "q001",
+      "type": "true_false",
+
+      "question": "The joule is the SI unit of energy.",
+
+      "choices": [
+        {
+          "id": "true",
+          "text": "True"
+        },
+        {
+          "id": "false",
+          "text": "False"
+        }
+      ],
+
+      "answer": "true",
+
+      "explanation": "The joule is the SI derived unit of energy.",
+
+      "difficulty": 1,
+
+      "tags": [
+        "physics",
+        "energy"
+      ],
+
+      "objectives": [
+        "CONFORMANCE.DUPLICATE_QUESTION_ID"
+      ]
+    }
+  ]
+}
+```

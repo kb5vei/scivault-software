@@ -1,0 +1,51 @@
+{
+  "format": "SciVault-QF",
+  "format_version": "0.1",
+
+  "metadata": {
+    "id": "org.scivault.conformance.missing-objectives",
+    "title": "Missing Objectives Warning Test",
+    "description": "Valid SciVault-QF 0.1 question set containing a question without learning objectives.",
+    "author": "SciVault",
+    "license": "CC0-1.0",
+    "version": "1.0",
+    "language": "en-US",
+    "tags": [
+      "conformance",
+      "warning"
+    ],
+    "created": "2026-08-19T12:36:00-06:00"
+  },
+
+  "questions": [
+    {
+      "id": "q001",
+      "type": "true_false",
+
+      "question": "The joule is the SI unit of energy.",
+
+      "choices": [
+        {
+          "id": "true",
+          "text": "True"
+        },
+        {
+          "id": "false",
+          "text": "False"
+        }
+      ],
+
+      "answer": "true",
+
+      "explanation": "The joule, symbol J, is the SI derived unit of energy.",
+
+      "difficulty": 1,
+
+      "tags": [
+        "physics",
+        "energy",
+        "units"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,62 @@
+{
+  "format": "SciVault-QF",
+  "format_version": "0.1",
+
+  "metadata": {
+    "title": "Missing Set ID Warning Test",
+    "description": "Valid SciVault-QF 0.1 question set that omits the recommended metadata.id field.",
+    "author": "SciVault",
+    "license": "CC0-1.0",
+    "version": "1.0",
+    "language": "en-US",
+    "tags": [
+      "conformance",
+      "warning"
+    ],
+    "created": "2026-08-19T12:38:00-06:00"
+  },
+
+  "questions": [
+    {
+      "id": "q001",
+      "type": "multiple_choice",
+
+      "question": "Which quantity is measured in watts?",
+
+      "choices": [
+        {
+          "id": "A",
+          "text": "Energy"
+        },
+        {
+          "id": "B",
+          "text": "Force"
+        },
+        {
+          "id": "C",
+          "text": "Power"
+        },
+        {
+          "id": "D",
+          "text": "Pressure"
+        }
+      ],
+
+      "answer": "C",
+
+      "explanation": "The watt is the SI derived unit of power.",
+
+      "difficulty": 1,
+
+      "tags": [
+        "physics",
+        "units",
+        "power"
+      ],
+
+      "objectives": [
+        "CONFORMANCE.MISSING_SET_ID"
+      ]
+    }
+  ]
+}

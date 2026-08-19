@@ -1,0 +1,59 @@
+{
+  "format": "SciVault-QF",
+  "format_version": "0.1",
+
+  "metadata": {
+    "id": "org.scivault.conformance.invalid-difficulty",
+    "title": "Invalid Difficulty Error Test",
+    "description": "Invalid SciVault-QF 0.1 question containing a difficulty value outside the allowed 0 through 10 range.",
+    "author": "SciVault",
+    "license": "CC0-1.0",
+    "version": "1.0",
+    "language": "en-US",
+    "tags": [
+      "conformance",
+      "invalid"
+    ],
+    "created": "2026-08-19T12:48:00-06:00"
+  },
+
+  "questions": [
+    {
+      "id": "q001",
+      "type": "multiple_choice",
+
+      "question": "What is the SI unit of electric current?",
+
+      "choices": [
+        {
+          "id": "A",
+          "text": "Volt"
+        },
+        {
+          "id": "B",
+          "text": "Ampere"
+        },
+        {
+          "id": "C",
+          "text": "Ohm"
+        }
+      ],
+
+      "answer": "B",
+
+      "explanation": "The ampere is the SI base unit of electric current.",
+
+      "difficulty": 11,
+
+      "tags": [
+        "physics",
+        "electricity",
+        "units"
+      ],
+
+      "objectives": [
+        "CONFORMANCE.INVALID_DIFFICULTY"
+      ]
+    }
+  ]
+}

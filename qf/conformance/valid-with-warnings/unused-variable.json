@@ -1,0 +1,72 @@
+{
+  "format": "SciVault-QF",
+  "format_version": "0.1",
+
+  "metadata": {
+    "id": "org.scivault.conformance.unused-variable",
+    "title": "Unused Variable Warning Test",
+    "description": "Valid SciVault-QF 0.1 question containing a defined dynamic variable that is never used.",
+    "author": "SciVault",
+    "license": "CC0-1.0",
+    "version": "1.0",
+    "language": "en-US",
+    "tags": [
+      "conformance",
+      "warning",
+      "dynamic"
+    ],
+    "created": "2026-08-19T12:37:00-06:00"
+  },
+
+  "questions": [
+    {
+      "id": "q001",
+      "type": "numerical",
+
+      "question": "An object moves at {{v}} m/s for {{t}} s. What distance does it travel?",
+
+      "variables": {
+        "v": {
+          "type": "integer",
+          "min": 1,
+          "max": 10,
+          "step": 1
+        },
+
+        "t": {
+          "type": "integer",
+          "min": 1,
+          "max": 10,
+          "step": 1
+        },
+
+        "mass": {
+          "type": "integer",
+          "min": 1,
+          "max": 20,
+          "step": 1
+        }
+      },
+
+      "answer": {
+        "expression": "v * t",
+        "tolerance": 0.01,
+        "unit": "m"
+      },
+
+      "explanation": "For constant speed, distance is $d=vt$.",
+
+      "difficulty": 2,
+
+      "tags": [
+        "physics",
+        "kinematics",
+        "dynamic"
+      ],
+
+      "objectives": [
+        "CONFORMANCE.UNUSED_VARIABLE"
+      ]
+    }
+  ]
+}

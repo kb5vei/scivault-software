@@ -1,0 +1,60 @@
+{
+  "format": "SciVault-QF",
+  "format_version": "0.1",
+
+  "metadata": {
+    "id": "org.scivault.conformance.missing-explanation",
+    "title": "Missing Explanation Warning Test",
+    "description": "Valid SciVault-QF 0.1 question set containing a question without an explanation.",
+    "author": "SciVault",
+    "license": "CC0-1.0",
+    "version": "1.0",
+    "language": "en-US",
+    "tags": [
+      "conformance",
+      "warning"
+    ],
+    "created": "2026-08-19T12:34:00-06:00"
+  },
+
+  "questions": [
+    {
+      "id": "q001",
+      "type": "multiple_choice",
+
+      "question": "Which SI unit is used to measure force?",
+
+      "choices": [
+        {
+          "id": "A",
+          "text": "Joule"
+        },
+        {
+          "id": "B",
+          "text": "Newton"
+        },
+        {
+          "id": "C",
+          "text": "Watt"
+        },
+        {
+          "id": "D",
+          "text": "Pascal"
+        }
+      ],
+
+      "answer": "B",
+
+      "difficulty": 1,
+
+      "tags": [
+        "physics",
+        "units"
+      ],
+
+      "objectives": [
+        "CONFORMANCE.MISSING_EXPLANATION"
+      ]
+    }
+  ]
+}

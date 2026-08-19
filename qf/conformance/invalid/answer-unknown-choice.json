@@ -1,0 +1,63 @@
+{
+  "format": "SciVault-QF",
+  "format_version": "0.1",
+
+  "metadata": {
+    "id": "org.scivault.conformance.answer-unknown-choice",
+    "title": "Unknown Answer Choice Error Test",
+    "description": "Invalid SciVault-QF 0.1 question containing an answer that references a nonexistent choice ID.",
+    "author": "SciVault",
+    "license": "CC0-1.0",
+    "version": "1.0",
+    "language": "en-US",
+    "tags": [
+      "conformance",
+      "invalid"
+    ],
+    "created": "2026-08-19T12:41:00-06:00"
+  },
+
+  "questions": [
+    {
+      "id": "q001",
+      "type": "multiple_choice",
+
+      "question": "Which SI unit is used to measure energy?",
+
+      "choices": [
+        {
+          "id": "A",
+          "text": "Newton"
+        },
+        {
+          "id": "B",
+          "text": "Watt"
+        },
+        {
+          "id": "C",
+          "text": "Joule"
+        },
+        {
+          "id": "D",
+          "text": "Pascal"
+        }
+      ],
+
+      "answer": "E",
+
+      "explanation": "The SI unit of energy is the joule.",
+
+      "difficulty": 1,
+
+      "tags": [
+        "physics",
+        "units",
+        "energy"
+      ],
+
+      "objectives": [
+        "CONFORMANCE.ANSWER_UNKNOWN_CHOICE"
+      ]
+    }
+  ]
+}

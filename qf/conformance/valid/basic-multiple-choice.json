@@ -1,0 +1,63 @@
+{
+  "format": "SciVault-QF",
+  "format_version": "0.1",
+
+  "metadata": {
+    "id": "org.scivault.conformance.basic-multiple-choice",
+    "title": "Basic Multiple-Choice Conformance Test",
+    "description": "Minimal valid SciVault-QF 0.1 question set containing one multiple-choice question.",
+    "author": "SciVault",
+    "license": "CC0-1.0",
+    "version": "1.0",
+    "language": "en-US",
+    "tags": [
+      "conformance",
+      "multiple-choice"
+    ],
+    "created": "2026-08-19T12:28:00-06:00"
+  },
+
+  "questions": [
+    {
+      "id": "q001",
+      "type": "multiple_choice",
+
+      "question": "What is $2+2$?",
+
+      "choices": [
+        {
+          "id": "A",
+          "text": "3"
+        },
+        {
+          "id": "B",
+          "text": "4"
+        },
+        {
+          "id": "C",
+          "text": "5"
+        }
+      ],
+
+      "answer": "B",
+
+      "explanation": "$2+2=4$.",
+
+      "difficulty": 0,
+
+      "tags": [
+        "math",
+        "arithmetic"
+      ],
+
+      "objectives": [
+        "CONFORMANCE.BASIC.MC"
+      ],
+
+      "settings": {
+        "shuffle_choices": true
+      }
+    }
+  ]
+}
+```

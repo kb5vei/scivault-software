@@ -1,0 +1,60 @@
+{
+  "format": "SciVault-QF",
+  "format_version": "0.1",
+
+  "metadata": {
+    "id": "org.scivault.conformance.unknown-core-field",
+    "title": "Unknown Core Field Error Test",
+    "description": "Invalid SciVault-QF 0.1 question containing an unrecognized core field.",
+    "author": "SciVault",
+    "license": "CC0-1.0",
+    "version": "1.0",
+    "language": "en-US",
+    "tags": [
+      "conformance",
+      "invalid"
+    ],
+    "created": "2026-08-19T12:47:00-06:00"
+  },
+
+  "questions": [
+    {
+      "id": "q001",
+      "type": "multiple_choice",
+
+      "question": "Which SI unit is used to measure force?",
+
+      "choices": [
+        {
+          "id": "A",
+          "text": "Joule"
+        },
+        {
+          "id": "B",
+          "text": "Newton"
+        },
+        {
+          "id": "C",
+          "text": "Watt"
+        }
+      ],
+
+      "answer": "B",
+
+      "explanation": "The SI unit of force is the newton.",
+
+      "difficulty": 1,
+
+      "dificulty_label": "easy",
+
+      "tags": [
+        "physics",
+        "units"
+      ],
+
+      "objectives": [
+        "CONFORMANCE.UNKNOWN_CORE_FIELD"
+      ]
+    }
+  ]
+}

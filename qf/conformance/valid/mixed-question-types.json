@@ -1,0 +1,146 @@
+{
+  "format": "SciVault-QF",
+  "format_version": "0.1",
+
+  "metadata": {
+    "id": "org.scivault.conformance.mixed-question-types",
+    "title": "Mixed Question Types Conformance Test",
+    "description": "Valid SciVault-QF 0.1 question set containing several supported question types.",
+    "author": "SciVault",
+    "license": "CC0-1.0",
+    "version": "1.0",
+    "language": "en-US",
+    "tags": [
+      "conformance",
+      "mixed-types"
+    ],
+    "created": "2026-08-19T12:29:00-06:00"
+  },
+
+  "questions": [
+    {
+      "id": "q001",
+      "type": "multiple_select",
+      "question": "Which of the following are vector quantities?",
+      "choices": [
+        {
+          "id": "A",
+          "text": "Velocity"
+        },
+        {
+          "id": "B",
+          "text": "Mass"
+        },
+        {
+          "id": "C",
+          "text": "Acceleration"
+        },
+        {
+          "id": "D",
+          "text": "Temperature"
+        }
+      ],
+      "answer": [
+        "A",
+        "C"
+      ],
+      "explanation": "Velocity and acceleration have both magnitude and direction.",
+      "difficulty": 2,
+      "tags": [
+        "physics",
+        "vectors"
+      ],
+      "objectives": [
+        "CONFORMANCE.MULTIPLE_SELECT"
+      ]
+    },
+
+    {
+      "id": "q002",
+      "type": "true_false",
+      "question": "An object moving at constant velocity has zero acceleration.",
+      "choices": [
+        {
+          "id": "true",
+          "text": "True"
+        },
+        {
+          "id": "false",
+          "text": "False"
+        }
+      ],
+      "answer": "true",
+      "explanation": "Constant velocity means the velocity is not changing, so the acceleration is zero.",
+      "difficulty": 1,
+      "tags": [
+        "physics",
+        "kinematics"
+      ],
+      "objectives": [
+        "CONFORMANCE.TRUE_FALSE"
+      ]
+    },
+
+    {
+      "id": "q003",
+      "type": "short_answer",
+      "question": "Name the SI unit of force.",
+      "answer": [
+        "newton",
+        "Newton",
+        "N"
+      ],
+      "explanation": "The SI unit of force is the newton, symbol N.",
+      "difficulty": 1,
+      "tags": [
+        "physics",
+        "units"
+      ],
+      "objectives": [
+        "CONFORMANCE.SHORT_ANSWER"
+      ]
+    },
+
+    {
+      "id": "q004",
+      "type": "fill_in_the_blank",
+      "question": "The SI unit of electric current is the {{blank}}.",
+      "answer": [
+        "ampere",
+        "Ampere",
+        "amp",
+        "A"
+      ],
+      "explanation": "The SI base unit of electric current is the ampere, symbol A.",
+      "difficulty": 1,
+      "tags": [
+        "physics",
+        "units"
+      ],
+      "objectives": [
+        "CONFORMANCE.FILL_BLANK"
+      ]
+    },
+
+    {
+      "id": "q005",
+      "type": "numerical",
+      "question": "A car travels $100\\,\\mathrm{m}$ in $5\\,\\mathrm{s}$. What is its average speed in $\\mathrm{m/s}$?",
+      "answer": {
+        "value": 20,
+        "tolerance": 0.1,
+        "unit": "m/s"
+      },
+      "explanation": "Average speed is distance divided by elapsed time: $100/5=20\\,\\mathrm{m/s}$.",
+      "difficulty": 1,
+      "tags": [
+        "physics",
+        "kinematics"
+      ],
+      "objectives": [
+        "CONFORMANCE.NUMERICAL"
+      ]
+    }
+  ]
+}
+```
