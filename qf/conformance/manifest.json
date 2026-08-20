@@ -1,0 +1,217 @@
+{
+  "format": "SciVault-QF-Conformance",
+  "format_version": "0.1",
+  "scivault_qf_version": "0.1",
+
+  "description": "Conformance manifest for the SciVault Question Format (SciVault-QF) version 0.1. Each entry identifies a test fixture and the validation result expected from a conforming SciVault-QF validator.",
+
+  "tests": [
+    {
+      "file": "valid/basic-multiple-choice.json",
+      "description": "Basic valid multiple-choice question.",
+      "valid": true,
+      "expected_findings": []
+    },
+    {
+      "file": "valid/mixed-question-types.json",
+      "description": "Valid question set containing multiple supported question types.",
+      "valid": true,
+      "expected_findings": []
+    },
+    {
+      "file": "valid/dynamic-and-media.json",
+      "description": "Valid questions using dynamic variables, a calculated answer, local media, and an extension namespace.",
+      "valid": true,
+      "expected_findings": []
+    },
+
+    {
+      "file": "valid-with-warnings/missing-explanation.json",
+      "description": "Valid question that omits the optional explanation field.",
+      "valid": true,
+      "expected_findings": [
+        {
+          "severity": "warning",
+          "code": "MISSING_EXPLANATION"
+        }
+      ]
+    },
+    {
+      "file": "valid-with-warnings/missing-objectives.json",
+      "description": "Valid question that omits learning objectives.",
+      "valid": true,
+      "expected_findings": [
+        {
+          "severity": "warning",
+          "code": "MISSING_OBJECTIVES"
+        }
+      ]
+    },
+    {
+      "file": "valid-with-warnings/unused-variable.json",
+      "description": "Valid dynamic question containing a defined variable that is never referenced.",
+      "valid": true,
+      "expected_findings": [
+        {
+          "severity": "warning",
+          "code": "UNUSED_VARIABLE"
+        }
+      ]
+    },
+    {
+      "file": "valid-with-warnings/missing-set-id.json",
+      "description": "Valid question set that omits the recommended metadata.id field.",
+      "valid": true,
+      "expected_findings": [
+        {
+          "severity": "warning",
+          "code": "MISSING_SET_ID"
+        }
+      ]
+    },
+
+    {
+      "file": "invalid/duplicate-question-id.json",
+      "description": "Invalid question set containing duplicate question IDs.",
+      "valid": false,
+      "expected_findings": [
+        {
+          "severity": "error",
+          "code": "DUPLICATE_QUESTION_ID"
+        }
+      ]
+    },
+    {
+      "file": "invalid/duplicate-choice-id.json",
+      "description": "Invalid multiple-choice question containing duplicate choice IDs.",
+      "valid": false,
+      "expected_findings": [
+        {
+          "severity": "error",
+          "code": "DUPLICATE_CHOICE_ID"
+        }
+      ]
+    },
+    {
+      "file": "invalid/answer-unknown-choice.json",
+      "description": "Invalid multiple-choice question whose answer references a nonexistent choice.",
+      "valid": false,
+      "expected_findings": [
+        {
+          "severity": "error",
+          "code": "ANSWER_UNKNOWN_CHOICE"
+        }
+      ]
+    },
+    {
+      "file": "invalid/invalid-variable-range.json",
+      "description": "Invalid dynamic question whose variable minimum is greater than its maximum.",
+      "valid": false,
+      "expected_findings": [
+        {
+          "severity": "error",
+          "code": "INVALID_VARIABLE_RANGE"
+        }
+      ]
+    },
+    {
+      "file": "invalid/undefined-variable.json",
+      "description": "Invalid dynamic question referencing a variable that is not defined.",
+      "valid": false,
+      "expected_findings": [
+        {
+          "severity": "error",
+          "code": "UNDEFINED_VARIABLE"
+        }
+      ]
+    },
+    {
+      "file": "invalid/missing-blank.json",
+      "description": "Invalid fill-in-the-blank question without the required {{blank}} placeholder.",
+      "valid": false,
+      "expected_findings": [
+        {
+          "severity": "error",
+          "code": "MISSING_BLANK"
+        }
+      ]
+    },
+    {
+      "file": "invalid/missing-media.json",
+      "description": "Invalid question referencing a local media resource that does not exist.",
+      "valid": false,
+      "expected_findings": [
+        {
+          "severity": "error",
+          "code": "MISSING_MEDIA"
+        }
+      ]
+    },
+    {
+      "file": "invalid/unknown-core-field.json",
+      "description": "Invalid question containing an unrecognized field in the SciVault-QF core namespace.",
+      "valid": false,
+      "expected_findings": [
+        {
+          "severity": "error",
+          "code": "SCHEMA_VALIDATION_ERROR"
+        }
+      ]
+    },
+    {
+      "file": "invalid/invalid-difficulty.json",
+      "description": "Invalid question containing a difficulty value outside the permitted 0 through 10 range.",
+      "valid": false,
+      "expected_findings": [
+        {
+          "severity": "error",
+          "code": "SCHEMA_VALIDATION_ERROR"
+        }
+      ]
+    },
+    {
+      "file": "invalid/invalid-true-false.json",
+      "description": "Invalid true/false question whose choice IDs are not the required true and false identifiers.",
+      "valid": false,
+      "expected_findings": [
+        {
+          "severity": "error",
+          "code": "INVALID_TRUE_FALSE_CHOICES"
+        }
+      ]
+    },
+    {
+      "file": "invalid/invalid-expression.json",
+      "description": "Invalid dynamic numerical question containing forbidden expression syntax.",
+      "valid": false,
+      "expected_findings": [
+        {
+          "severity": "error",
+          "code": "INVALID_EXPRESSION"
+        }
+      ]
+    },
+    {
+      "file": "invalid/undefined-expression-variable.json",
+      "description": "Invalid dynamic numerical question whose answer expression references an undefined variable.",
+      "valid": false,
+      "expected_findings": [
+        {
+          "severity": "error",
+          "code": "UNDEFINED_VARIABLE"
+        }
+      ]
+    },
+    {
+      "file": "invalid/multiple-select-unknown-choice.json",
+      "description": "Invalid multiple-select question whose answer array references a nonexistent choice.",
+      "valid": false,
+      "expected_findings": [
+        {
+          "severity": "error",
+          "code": "ANSWER_UNKNOWN_CHOICE"
+        }
+      ]
+    }
+  ]
+}

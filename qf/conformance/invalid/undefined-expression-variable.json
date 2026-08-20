@@ -1,0 +1,58 @@
+{
+  "format": "SciVault-QF",
+  "format_version": "0.1",
+
+  "metadata": {
+    "id": "org.scivault.conformance.undefined-expression-variable",
+    "title": "Undefined Expression Variable Error Test",
+    "description": "Invalid SciVault-QF 0.1 question whose dynamic answer expression references an undefined variable.",
+    "author": "SciVault",
+    "license": "CC0-1.0",
+    "version": "1.0",
+    "language": "en-US",
+    "tags": [
+      "conformance",
+      "invalid",
+      "dynamic"
+    ],
+    "created": "2026-08-20T08:56:00-06:00"
+  },
+
+  "questions": [
+    {
+      "id": "q001",
+      "type": "numerical",
+
+      "question": "An object moves at {{v}} m/s for 5 s. What distance does it travel?",
+
+      "variables": {
+        "v": {
+          "type": "integer",
+          "min": 1,
+          "max": 10,
+          "step": 1
+        }
+      },
+
+      "answer": {
+        "expression": "v * t",
+        "tolerance": 0.01,
+        "unit": "m"
+      },
+
+      "explanation": "For constant speed, distance is calculated using $d=vt$.",
+
+      "difficulty": 2,
+
+      "tags": [
+        "physics",
+        "kinematics",
+        "dynamic"
+      ],
+
+      "objectives": [
+        "CONFORMANCE.UNDEFINED_EXPRESSION_VARIABLE"
+      ]
+    }
+  ]
+}

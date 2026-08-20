@@ -1,0 +1,68 @@
+{
+  "format": "SciVault-QF",
+  "format_version": "0.1",
+
+  "metadata": {
+    "id": "org.scivault.conformance.multiple-select-unknown-choice",
+    "title": "Multiple Select Unknown Choice Error Test",
+    "description": "Invalid SciVault-QF 0.1 multiple-select question whose answer array references a nonexistent choice ID.",
+    "author": "SciVault",
+    "license": "CC0-1.0",
+    "version": "1.0",
+    "language": "en-US",
+    "tags": [
+      "conformance",
+      "invalid",
+      "multiple-select"
+    ],
+    "created": "2026-08-20T08:57:00-06:00"
+  },
+
+  "questions": [
+    {
+      "id": "q001",
+      "type": "multiple_select",
+
+      "question": "Which of the following are SI base units?",
+
+      "choices": [
+        {
+          "id": "A",
+          "text": "Meter"
+        },
+        {
+          "id": "B",
+          "text": "Second"
+        },
+        {
+          "id": "C",
+          "text": "Newton"
+        },
+        {
+          "id": "D",
+          "text": "Joule"
+        }
+      ],
+
+      "answer": [
+        "A",
+        "B",
+        "E"
+      ],
+
+      "explanation": "The meter and second are SI base units. The newton and joule are derived units.",
+
+      "difficulty": 2,
+
+      "tags": [
+        "physics",
+        "units",
+        "si"
+      ],
+
+      "objectives": [
+        "CONFORMANCE.MULTIPLE_SELECT_UNKNOWN_CHOICE"
+      ]
+    }
+  ]
+}
