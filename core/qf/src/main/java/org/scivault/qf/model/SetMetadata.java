@@ -1,5 +1,7 @@
 package org.scivault.qf.model;
 
+import com.fasterxml.jackson.annotation.JsonAnyGetter;
+import com.fasterxml.jackson.annotation.JsonAnySetter;
 import com.fasterxml.jackson.databind.JsonNode;
 
 import java.util.ArrayList;
@@ -86,6 +88,14 @@ public class SetMetadata {
         this.description = description;
     }
 
+    public String getCreated() {
+        return created;
+    }
+
+    public void setCreated(String created) {
+        this.created = created;
+    }
+
     public List<String> getTags() {
         return tags;
     }
@@ -94,17 +104,15 @@ public class SetMetadata {
         this.tags = tags;
     }
 
+    @JsonAnyGetter
     public Map<String, JsonNode> getAdditionalProperties() {
         return additionalProperties;
     }
-    public String getCreated() {
-    return created;
-}
 
-public void setCreated(String created) {
-    this.created = created;
-}
-
+    @JsonAnySetter
+    public void putAdditionalProperty(String name, JsonNode value) {
+        additionalProperties.put(name, value);
+    }
 
     public void setAdditionalProperties(
             Map<String, JsonNode> additionalProperties) {

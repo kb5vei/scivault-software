@@ -1,14 +1,15 @@
 package org.scivault.qf.model;
 
+import com.fasterxml.jackson.annotation.JsonAnyGetter;
+import com.fasterxml.jackson.annotation.JsonAnySetter;
+import com.fasterxml.jackson.annotation.JsonSubTypes;
+import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.databind.JsonNode;
 
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
-import com.fasterxml.jackson.annotation.JsonSubTypes;
-import com.fasterxml.jackson.annotation.JsonTypeInfo;
-
 
 @JsonTypeInfo(
         use = JsonTypeInfo.Id.NAME,
@@ -42,8 +43,6 @@ import com.fasterxml.jackson.annotation.JsonTypeInfo;
                 name = "numerical"
         )
 })
-
-
 public abstract class Question {
 
     private String id;
@@ -60,6 +59,10 @@ public abstract class Question {
     private QuestionSettings settings;
     private Extensions extensions;
 
+    /*
+     * Allows question properties not explicitly modeled by the
+     * core library to be preserved when a QF file is read and written.
+     */
     private Map<String, JsonNode> additionalProperties =
             new LinkedHashMap<>();
 
@@ -148,8 +151,14 @@ public abstract class Question {
         this.extensions = extensions;
     }
 
+    @JsonAnyGetter
     public Map<String, JsonNode> getAdditionalProperties() {
         return additionalProperties;
+    }
+
+    @JsonAnySetter
+    public void putAdditionalProperty(String name, JsonNode value) {
+        additionalProperties.put(name, value);
     }
 
     public void setAdditionalProperties(
