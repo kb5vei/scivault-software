@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report-3.0.xsd" version="3.0" name="org.scivault.qf.SciVaultQfValidatorTest" time="0.008" tests="1" errors="0" skipped="0" failures="0">
+<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report-3.0.xsd" version="3.0" name="org.scivault.qf.QfReaderTest" time="0.154" tests="3" errors="0" skipped="0" failures="0">
   <properties>
     <property name="sun.desktop" value="gnome"/>
     <property name="awt.toolkit" value="sun.awt.X11.XToolkit"/>
@@ -59,5 +59,86 @@
     <property name="sun.io.unicode.encoding" value="UnicodeLittle"/>
     <property name="java.class.version" value="55.0"/>
   </properties>
-  <testcase name="validatorLoadsSchema" classname="org.scivault.qf.SciVaultQfValidatorTest" time="0.005"/>
+  <testcase name="readsMixedQuestionTypesFixture" classname="org.scivault.qf.QfReaderTest" time="0.121">
+    <system-out><![CDATA[
+=== QfReader: mixed-question-types.json ===
+Questions: 5
+
+Question 1:
+  Java class: MultipleSelectQuestion
+  Type: multiple_select
+  Answer: [A, C]
+
+Question 2:
+  Java class: TrueFalseQuestion
+  Type: true_false
+  Answer: true
+
+Question 3:
+  Java class: ShortAnswerQuestion
+  Type: short_answer
+  Answers: [newton, Newton, N]
+
+Question 4:
+  Java class: FillInTheBlankQuestion
+  Type: fill_in_the_blank
+  Answers: [ampere, Ampere, amp, A]
+
+Question 5:
+  Java class: NumericalQuestion
+  Type: numerical
+  Value: 20
+  Tolerance: 0.1
+  Unit: m/s
+]]></system-out>
+  </testcase>
+  <testcase name="readsDynamicAndMediaFixture" classname="org.scivault.qf.QfReaderTest" time="0.021">
+    <system-out><![CDATA[
+=== QfReader: dynamic-and-media.json ===
+
+Question 1:
+  Java class: NumericalQuestion
+  Variables: [a, t]
+  a: min=1, max=5, step=1
+  t: min=2, max=10, step=1
+  Expression: a * t
+  Tolerance: 0.01
+  Unit: m/s
+
+Question 2:
+  Java class: MultipleChoiceQuestion
+  Media ID: prompt-diagram
+  Media type: image
+  Media src: media/reference-diagram.svg
+  Extensions: {org.scivault.peer_instruction={"recommended_discussion_time":120}}
+]]></system-out>
+  </testcase>
+  <testcase name="readsBasicMultipleChoiceFixture" classname="org.scivault.qf.QfReaderTest" time="0.009">
+    <system-out><![CDATA[
+=== QfReader: basic-multiple-choice.json ===
+Format: SciVault-QF
+Format version: 0.1
+
+Metadata:
+  ID: org.scivault.conformance.basic-multiple-choice
+  Title: Basic Multiple-Choice Conformance Test
+  Author: SciVault
+  Created: 2026-08-19T12:28:00-06:00
+
+Questions: 1
+
+Question 1:
+  Java class: MultipleChoiceQuestion
+  ID: q001
+  Type: multiple_choice
+  Text: What is $2+2$?
+  Difficulty: 0
+  Choices:
+    A: 3
+    B: 4
+    C: 5
+  Answer: B
+  Shuffle choices: true
+]]></system-out>
+  </testcase>
 </testsuite>
