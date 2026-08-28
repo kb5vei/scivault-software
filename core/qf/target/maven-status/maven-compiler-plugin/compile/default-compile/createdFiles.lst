@@ -1,0 +1,6 @@
+org/scivault/qf/ExpressionValidator.class
+org/scivault/qf/ValidationResult.class
+org/scivault/qf/ExpressionValidator$Result.class
+org/scivault/qf/Finding$Severity.class
+org/scivault/qf/SciVaultQfValidator.class
+org/scivault/qf/Finding.class
