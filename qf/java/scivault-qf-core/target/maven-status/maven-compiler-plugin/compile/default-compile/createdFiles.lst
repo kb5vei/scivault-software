@@ -1,0 +1,7 @@
+org/scivault/qf/ExpressionValidator.class
+org/scivault/qf/ValidationResult.class
+org/scivault/qf/ConformanceRunner$CaseResult.class
+org/scivault/qf/ConformanceRunner.class
+org/scivault/qf/Finding.class
+org/scivault/qf/ExpressionValidator$Result.class
+org/scivault/qf/SciVaultQfValidator.class

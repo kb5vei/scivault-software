@@ -1,8 +1,0 @@
-{
-  "question_directory": "./questions/",
-  "output_directory": "./output/",
-  "shuffle_questions": true,
-  "shuffle_choices": true,
-  "recursive_scan": true,
-  "default_difficulty": 5
-}
