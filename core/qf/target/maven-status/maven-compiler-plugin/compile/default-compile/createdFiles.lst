@@ -15,6 +15,7 @@ org/scivault/qf/model/ChoiceVariable.class
 org/scivault/qf/Finding$Severity.class
 org/scivault/qf/model/DecimalVariable.class
 org/scivault/qf/model/Media.class
+org/scivault/qf/QfWriter.class
 org/scivault/qf/model/SetMetadata.class
 org/scivault/qf/model/MultipleChoiceQuestion.class
 org/scivault/qf/model/MultipleSelectQuestion.class
