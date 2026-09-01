@@ -1,5 +1,6 @@
 package org.scivault.qf;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
 import org.scivault.qf.model.QuestionBank;
@@ -11,6 +12,9 @@ public final class QfWriter {
 
     private static final ObjectMapper MAPPER =
             new ObjectMapper()
+                    .setSerializationInclusion(
+                            JsonInclude.Include.NON_NULL
+                    )
                     .enable(SerializationFeature.INDENT_OUTPUT);
 
     private QfWriter() {

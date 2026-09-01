@@ -1,4 +1,3 @@
-
 \documentclass[11pt]{article}
 
 \usepackage[letterpaper,margin=1in]{geometry}
@@ -14,1328 +13,1348 @@
 \usepackage{hyperref}
 
 \hypersetup{
-    colorlinks=true,
-    linkcolor=blue,
-    urlcolor=blue
+	colorlinks=true,
+	linkcolor=blue,
+	urlcolor=blue
 }
 
 \definecolor{codegray}{rgb}{0.96,0.96,0.96}
 
 \lstset{
-    backgroundcolor=\color{codegray},
-    basicstyle=\ttfamily\small,
-    columns=fullflexible,
-    keepspaces=true,
-    breaklines=true,
-    frame=single,
-    showstringspaces=false,
-    tabsize=2
+	backgroundcolor=\color{codegray},
+	basicstyle=\ttfamily\small,
+	columns=fullflexible,
+	keepspaces=true,
+	breaklines=true,
+	frame=single,
+	showstringspaces=false,
+	tabsize=2
 }
 
 \setlist{nosep}
 
 \title{
-    \textbf{SciVault Question Format}\\
-    Human-Readable Specification\\
-    \large SciVault-QF Version 0.1
+	\textbf{SciVault Question Format}\\
+	Human-Readable Specification\\
+	\large SciVault-QF Version 0.1
 }
 
 \author{SciVault}
 \date{}
 
 \begin{document}
-
-\maketitle
-
-\begin{abstract}
-The SciVault Question Format (SciVault-QF) is an open,
-application-independent JSON format for representing educational questions
-and question banks. It provides a common question-content layer for the
-SciVault software suite and may also be implemented by third-party
-applications.
-
-SciVault-QF separates question content from presentation, assessment
-sessions, student records, and results. This allows a question to be
-authored once and reused for test generation, peer instruction, practice,
-homework, online assessment, analytics, and other instructional purposes.
-\end{abstract}
-
-\tableofcontents
-\newpage
-
-% ============================================================
-\section{Scope}
-% ============================================================
-
-SciVault-QF defines the representation of educational questions and
-collections of questions.
-
-It is intended to support applications including:
-
-\begin{itemize}
-    \item question-bank editors;
-    \item test and worksheet generators;
-    \item peer-instruction systems;
-    \item classroom-response systems;
-    \item homework and practice systems;
-    \item online assessments;
-    \item item-analysis systems;
-    \item learning analytics;
-    \item learning-management-system integrations; and
-    \item compatible third-party educational software.
-\end{itemize}
-
-SciVault-QF does \textbf{not} define student accounts, classroom rosters,
-assessment sessions, grades, or student responses.
-
-% ============================================================
-\section{Design Goals}
-% ============================================================
-
-SciVault-QF is designed to be:
-
-\begin{itemize}
-    \item human-readable;
-    \item machine-readable;
-    \item portable;
-    \item extensible;
-    \item suitable for version control;
-    \item independent of any particular database;
-    \item independent of any particular SciVault application;
-    \item suitable for mathematical and scientific content;
-    \item capable of referencing media;
-    \item suitable for static and dynamically generated questions; and
-    \item usable by software outside the SciVault suite.
-\end{itemize}
-
-% ============================================================
-\section{Format Identity}
-% ============================================================
-
-The official name of the format is:
-
-\begin{center}
-\textbf{SciVault Question Format}
-\end{center}
-
-The abbreviated machine-readable identifier is:
-
-\begin{lstlisting}
-SciVault-QF
-\end{lstlisting}
-
-Version 0.1 files shall contain:
-
-\begin{lstlisting}
-"format": "SciVault-QF",
-"format_version": "0.1"
-\end{lstlisting}
-
-% ============================================================
-\section{File Representation}
-% ============================================================
-
-SciVault-QF version 0.1 uses JSON.
-
-\begin{itemize}
-    \item \textbf{Encoding:} UTF-8
-    \item \textbf{Extension:} \texttt{.json}
-    \item \textbf{Recommended MIME type:} \texttt{application/json}
-\end{itemize}
-
-Version 0.1 does not define a proprietary file extension.
-
-% ------------------------------------------------------------
-\subsection{Future Packages}
-% ------------------------------------------------------------
-
-A future specification may define a packaged question-bank format containing
-a SciVault-QF document together with images, audio, video, or other
-resources.
-
-SciVault-QF 0.1 does not specify the archive technology or package
-extension.
-
-ZIP, TAR, TAR.GZ, and other container formats are therefore neither required
-nor prohibited by this specification.
-
-% ============================================================
-\section{Document Structure}
-% ============================================================
-
-A SciVault-QF document contains metadata and one or more questions.
-
-\begin{lstlisting}
-{
-  "format": "SciVault-QF",
-  "format_version": "0.1",
-
-  "metadata": {
-    ...
-  },
-
-  "questions": [
-    ...
-  ]
-}
-\end{lstlisting}
-
-The top-level fields are:
-
-\begin{longtable}{|>{\ttfamily}p{3.0cm}|p{2.0cm}|p{1.7cm}|p{7.5cm}|}
-\hline
-\textbf{Field} & \textbf{Type} & \textbf{Required} &
-\textbf{Description} \\ \hline
-\endfirsthead
-
-format & String & Yes &
-Must contain \texttt{SciVault-QF}. \\ \hline
-
-format\_version & String & Yes &
-Version of this specification. \\ \hline
-
-metadata & Object & Yes &
-Metadata describing the question collection. \\ \hline
-
-questions & Array & Yes &
-Array containing one or more questions. \\ \hline
-
-extensions & Object & No &
-Namespaced extension data. \\ \hline
-
-\end{longtable}
-
-Unknown fields shall not be inserted directly into core SciVault-QF
-objects. Additional data shall use the extension mechanism described later
-in this specification.
-
-% ============================================================
-\section{Question-Set Metadata}
-% ============================================================
-
-Example:
-
-\begin{lstlisting}
-"metadata": {
-  "id": "org.scivault.physics.kinematics",
-  "title": "Kinematics Concept Questions",
-  "description":
-    "Conceptual and quantitative introductory kinematics questions.",
-  "author": "Jane Doe",
-  "license": "CC-BY-4.0",
-  "version": "1.0",
-  "language": "en-US",
-  "tags": [
-    "physics",
-    "kinematics"
-  ],
-  "created": "2026-08-19T10:30:00-06:00",
-  "modified": "2026-08-19T10:45:00-06:00"
-}
-\end{lstlisting}
-
-\begin{longtable}{|>{\ttfamily}p{2.8cm}|p{1.8cm}|p{1.7cm}|p{7.8cm}|}
-\hline
-\textbf{Field} & \textbf{Type} & \textbf{Required} &
-\textbf{Description} \\ \hline
-\endfirsthead
-
-id & String & Recommended &
-Stable identifier for the question collection. \\ \hline
-
-title & String & Yes &
-Human-readable title. \\ \hline
-
-description & String & No &
-Description of the collection. \\ \hline
-
-author & String & No &
-Author or responsible organization. \\ \hline
-
-license & String & Yes &
-License governing the question content. \\ \hline
-
-version & String & No &
-Version of the question collection. \\ \hline
-
-language & String & No &
-Content language or locale, preferably expressed using a BCP~47 tag such
-as \texttt{en-US}. \\ \hline
-
-tags & Array & No &
-Descriptive keywords applying to the collection. \\ \hline
-
-created & String & No &
-Creation timestamp in ISO~8601 date-time format. \\ \hline
-
-modified & String & No &
-Modification timestamp in ISO~8601 date-time format. \\ \hline
-
-extensions & Object & No &
-Namespaced extension data. \\ \hline
-
-\end{longtable}
-
-The number of questions shall not be stored separately. Applications shall
-determine it from the length of the \texttt{questions} array.
-
-% ============================================================
-\section{Identifiers}
-% ============================================================
-
-Each question shall have an ID unique within its question collection.
-
-Example:
-
-\begin{lstlisting}
-"id": "q001"
-\end{lstlisting}
-
-A stable namespace-style identifier is recommended for the question set:
-
-\begin{lstlisting}
-"id": "org.scivault.physics.kinematics"
-\end{lstlisting}
-
-The combination:
-
-\begin{lstlisting}
-org.scivault.physics.kinematics:q001
-\end{lstlisting}
-
-may therefore be treated as a globally meaningful reference to the
-question.
-
-Applications shall not assume that IDs are numeric or sequential.
-
-Answer choices shall also have stable IDs unique within their question.
-
-% ============================================================
-\section{Common Question Structure}
-% ============================================================
-
-All questions shall contain:
-
-\begin{itemize}
-    \item \texttt{id};
-    \item \texttt{type};
-    \item \texttt{question}; and
-    \item \texttt{answer}.
-\end{itemize}
-
-Questions may additionally contain:
-
-\begin{itemize}
-    \item \texttt{choices};
-    \item \texttt{explanation};
-    \item \texttt{hint};
-    \item \texttt{difficulty};
-    \item \texttt{tags};
-    \item \texttt{objectives};
-    \item \texttt{media};
-    \item \texttt{variables};
-    \item \texttt{settings};
-    \item \texttt{metadata}; and
-    \item \texttt{extensions}.
-\end{itemize}
-
-Example:
-
-\begin{lstlisting}
-{
-  "id": "q001",
-  "type": "multiple_choice",
-  "question": "What is $2+2$?",
-  "choices": [
-    {"id": "A", "text": "3"},
-    {"id": "B", "text": "4"},
-    {"id": "C", "text": "5"}
-  ],
-  "answer": "B",
-  "explanation": "$2+2=4$.",
-  "difficulty": 1,
-  "tags": ["math", "arithmetic"]
-}
-\end{lstlisting}
-
-% ============================================================
-\section{Text and Mathematical Notation}
-% ============================================================
-
-Question prompts, choices, hints, explanations, and other textual content
-may contain LaTeX-compatible mathematical notation.
-
-Example:
-
-\begin{lstlisting}
-"What is the kinetic energy of a $4\\,\\mathrm{kg}$ object
-moving at $3\\,\\mathrm{m/s}$?"
-\end{lstlisting}
-
-Because backslashes have special meaning in JSON, LaTeX backslashes shall
-be escaped.
-
-For example:
-
-\begin{lstlisting}
-\frac{1}{2}mv^2
-\end{lstlisting}
-
-is represented within a JSON string as:
-
-\begin{lstlisting}
-"\\frac{1}{2}mv^2"
-\end{lstlisting}
-
-Applications should use a mathematical rendering system such as MathJax or
-KaTeX.
-
-% ============================================================
-\section{Difficulty}
-% ============================================================
-
-The optional \texttt{difficulty} field shall contain an integer from
-0 through 10 inclusive.
-
-The scale is intended to permit question authors and applications to
-classify questions with greater resolution than a small categorical scale.
-
-The endpoints may generally be interpreted as:
-
-\begin{center}
-\begin{tabular}{|c|l|}
-\hline
-0 & Trivial or introductory \\ \hline
-5 & Moderate \\ \hline
-10 & Extremely difficult \\ \hline
-\end{tabular}
-\end{center}
-
-Intermediate values represent increasing levels of difficulty.
-
-Difficulty is primarily intended for:
-
-\begin{itemize}
-    \item filtering;
-    \item question-bank organization;
-    \item automatic test generation;
-    \item differentiated practice;
-    \item adaptive systems; and
-    \item instructional planning.
-\end{itemize}
-
-A difficulty value is an author or system estimate unless supported by
-empirical item statistics.
-
-% ============================================================
-\section{Tags and Learning Objectives}
-% ============================================================
-
-Tags provide descriptive classification.
-
-Example:
-
-\begin{lstlisting}
-"tags": [
-  "physics",
-  "kinematics",
-  "constant-acceleration"
-]
-\end{lstlisting}
-
-Learning objectives are stored separately:
-
-\begin{lstlisting}
-"objectives": [
-  "KIN-VELOCITY",
-  "PHY.KIN.3"
-]
-\end{lstlisting}
-
-This distinction permits questions to be searched broadly by topic while
-also associating them with specific assessable outcomes.
-
-SciVault-QF does not require a particular learning-objective or standards
-framework.
-
-% ============================================================
-\section{Multiple-Choice Questions}
-% ============================================================
-
-Multiple-choice questions use:
-
-\begin{lstlisting}
-"type": "multiple_choice"
-\end{lstlisting}
-
-They shall contain two or more choices and exactly one correct answer.
-
-\begin{lstlisting}
-{
-  "id": "q001",
-  "type": "multiple_choice",
-
-  "question":
-    "An object starts from rest and accelerates at "
-    "$2\\,\\mathrm{m/s^2}$ for $5\\,\\mathrm{s}$. "
-    "What is its final velocity?",
-
-  "choices": [
-    {
-      "id": "A",
-      "text": "$5\\,\\mathrm{m/s}$"
-    },
-    {
-      "id": "B",
-      "text": "$10\\,\\mathrm{m/s}$"
-    },
-    {
-      "id": "C",
-      "text": "$15\\,\\mathrm{m/s}$"
-    },
-    {
-      "id": "D",
-      "text": "$20\\,\\mathrm{m/s}$"
-    }
-  ],
-
-  "answer": "B",
-
-  "explanation":
-    "Using $v=v_0+at$, "
-    "$v=0+(2)(5)=10\\,\\mathrm{m/s}$.",
-
-  "difficulty": 2
-}
-\end{lstlisting}
-
-The \texttt{answer} shall reference the stable ID of the correct choice.
-
-Displayed answer text shall not serve as the answer identifier.
-
-% ============================================================
-\section{Multiple-Select Questions}
-% ============================================================
-
-Questions having more than one correct choice use:
-
-\begin{lstlisting}
-"type": "multiple_select"
-\end{lstlisting}
-
-The answer shall contain an array of correct choice IDs.
-
-\begin{lstlisting}
-{
-  "id": "q002",
-  "type": "multiple_select",
-
-  "question":
-    "Which of the following are vector quantities?",
-
-  "choices": [
-    {"id": "A", "text": "Velocity"},
-    {"id": "B", "text": "Mass"},
-    {"id": "C", "text": "Acceleration"},
-    {"id": "D", "text": "Temperature"}
-  ],
-
-  "answer": [
-    "A",
-    "C"
-  ]
-}
-\end{lstlisting}
-
-% ============================================================
-\section{True/False Questions}
-% ============================================================
-
-True/false questions use:
-
-\begin{lstlisting}
-"type": "true_false"
-\end{lstlisting}
-
-They shall contain exactly two choices with the IDs:
-
-\begin{lstlisting}
-true
-false
-\end{lstlisting}
-
-Example:
-
-\begin{lstlisting}
-{
-  "id": "q003",
-  "type": "true_false",
-
-  "question":
-    "An object moving at constant velocity has zero acceleration.",
-
-  "choices": [
-    {"id": "true", "text": "True"},
-    {"id": "false", "text": "False"}
-  ],
-
-  "answer": "true"
-}
-\end{lstlisting}
-
-% ============================================================
-\section{Short-Answer Questions}
-% ============================================================
-
-Short-answer questions use:
-
-\begin{lstlisting}
-"type": "short_answer"
-\end{lstlisting}
-
-The answer may contain one acceptable response:
-
-\begin{lstlisting}
-"answer": "photosynthesis"
-\end{lstlisting}
-
-or multiple acceptable textual responses:
-
-\begin{lstlisting}
-"answer": [
-  "photosynthesis",
-  "Photosynthesis"
-]
-\end{lstlisting}
-
-Applications may implement normalization, case-insensitive comparison,
-teacher review, or other appropriate grading behavior.
-
-% ============================================================
-\section{Fill-in-the-Blank Questions}
-% ============================================================
-
-Fill-in-the-blank questions use:
-
-\begin{lstlisting}
-"type": "fill_in_the_blank"
-\end{lstlisting}
-
-Version 0.1 reserves:
-
-\begin{lstlisting}
-{{blank}}
-\end{lstlisting}
-
-as the blank placeholder.
-
-Example:
-
-\begin{lstlisting}
-{
-  "id": "q004",
-  "type": "fill_in_the_blank",
-
-  "question":
-    "The SI unit of force is the {{blank}}.",
-
-  "answer": [
-    "newton",
-    "Newton",
-    "N"
-  ]
-}
-\end{lstlisting}
-
-Version 0.1 defines one scored blank per question.
-
-Multiple independently scored blanks are reserved for a future revision.
-
-% ============================================================
-\section{Numerical Questions}
-% ============================================================
-
-Numerical questions use:
-
-\begin{lstlisting}
-"type": "numerical"
-\end{lstlisting}
-
-A static numerical answer may contain:
-
-\begin{lstlisting}
-"answer": {
-  "value": 20,
-  "tolerance": 0.1,
-  "unit": "m/s"
-}
-\end{lstlisting}
-
-The \texttt{value} is the expected answer.
-
-The optional \texttt{tolerance} specifies an absolute numerical tolerance.
-
-The optional \texttt{unit} specifies the expected physical unit.
-
-A dynamically calculated answer may instead use an expression:
-
-\begin{lstlisting}
-"answer": {
-  "expression": "a * t",
-  "tolerance": 0.01,
-  "unit": "m/s"
-}
-\end{lstlisting}
-
-Exactly one of \texttt{value} or \texttt{expression} shall be present.
-
-% ============================================================
-\section{Hints and Explanations}
-% ============================================================
-
-The optional \texttt{hint} field contains assistance that may be displayed
-before the answer is revealed.
-
-Example:
-
-\begin{lstlisting}
-"hint":
-  "Identify the initial velocity, acceleration, and elapsed time."
-\end{lstlisting}
-
-The optional \texttt{explanation} field contains feedback, reasoning, or a
-worked solution.
-
-Example:
-
-\begin{lstlisting}
-"explanation":
-  "Using $v=v_0+at$, "
-  "$v=0+(2)(5)=10\\,\\mathrm{m/s}$."
-\end{lstlisting}
-
-Consuming applications determine when hints and explanations are displayed.
-
-% ============================================================
-\section{Media}
-% ============================================================
-
-Questions and answer choices may reference external media.
-
-Example:
-
-\begin{lstlisting}
-"media": [
-  {
-    "id": "diagram1",
-    "type": "image",
-    "src": "media/incline.svg",
-    "alt":
-      "A block resting on a 30 degree inclined plane."
-  }
-]
-\end{lstlisting}
-
-Version 0.1 recognizes the media types:
-
-\begin{itemize}
-    \item \texttt{image};
-    \item \texttt{audio};
-    \item \texttt{video}.
-\end{itemize}
-
-Media objects may contain:
-
-\begin{itemize}
-    \item \texttt{id};
-    \item \texttt{type};
-    \item \texttt{src};
-    \item \texttt{alt};
-    \item \texttt{caption};
-    \item \texttt{credit};
-    \item \texttt{license}; and
-    \item \texttt{extensions}.
-\end{itemize}
-
-Images shall contain an \texttt{alt} field.
-
-Relative paths are recommended for locally distributed resources.
-
-% ============================================================
-\section{Dynamic Questions}
-% ============================================================
-
-Dynamic questions may define variables whose values are generated when the
-question is instantiated.
-
-Variables are referenced using double braces.
-
-Example:
-
-\begin{lstlisting}
-"question":
-  "An object accelerates at {{a}} m/s^2 "
-  "for {{t}} s. What is its change in velocity?"
-\end{lstlisting}
-
-Version 0.1 defines:
-
-\begin{itemize}
-    \item integer variables;
-    \item decimal variables;
-    \item choice variables.
-\end{itemize}
-
-% ------------------------------------------------------------
-\subsection{Integer Variables}
-% ------------------------------------------------------------
-
-\begin{lstlisting}
-"a": {
-  "type": "integer",
-  "min": 1,
-  "max": 5
-}
-\end{lstlisting}
-
-An optional positive \texttt{step} may be specified.
-
-% ------------------------------------------------------------
-\subsection{Decimal Variables}
-% ------------------------------------------------------------
-
-\begin{lstlisting}
-"mu": {
-  "type": "decimal",
-  "min": 0.1,
-  "max": 1.0,
-  "step": 0.1
-}
-\end{lstlisting}
-
-% ------------------------------------------------------------
-\subsection{Choice Variables}
-% ------------------------------------------------------------
-
-\begin{lstlisting}
-"planet": {
-  "type": "choice",
-  "values": [
-    "Earth",
-    "Mars",
-    "Moon"
-  ]
-}
-\end{lstlisting}
-
-Choice-variable values may be strings, numbers, or Boolean values.
-
-% ============================================================
-\section{Dynamic Expressions}
-% ============================================================
-
-A dynamic numerical answer may be calculated from variables.
-
-Example:
-
-\begin{lstlisting}
-{
-  "id": "q005",
-  "type": "numerical",
-
-  "question":
-    "An object starts from rest and accelerates at "
-    "{{a}} m/s^2 for {{t}} s. "
-    "What is its final speed?",
-
-  "variables": {
-    "a": {
-      "type": "integer",
-      "min": 1,
-      "max": 5
-    },
-
-    "t": {
-      "type": "integer",
-      "min": 2,
-      "max": 10
-    }
-  },
-
-  "answer": {
-    "expression": "a * t",
-    "tolerance": 0.01,
-    "unit": "m/s"
-  }
-}
-\end{lstlisting}
-
-Expressions shall be evaluated by a restricted mathematical expression
-engine.
-
-SciVault-QF files shall never cause arbitrary programming-language code to
-be executed.
-
-The complete expression language is reserved for further specification.
-
-% ============================================================
-\section{Randomization}
-% ============================================================
-
-Applications may randomize:
-
-\begin{itemize}
-    \item question selection;
-    \item question order;
-    \item dynamic variable values; and
-    \item answer-choice order.
-\end{itemize}
-
-Correctness is associated with stable choice IDs rather than displayed
-positions.
-
-A question may recommend answer-choice shuffling:
-
-\begin{lstlisting}
-"settings": {
-  "shuffle_choices": true
-}
-\end{lstlisting}
-
-% ============================================================
-\section{Extensions}
-% ============================================================
-
-SciVault-QF is extensible while maintaining strict core validation.
-
-Application-specific data shall be placed inside an
-\texttt{extensions} object.
-
-Example:
-
-\begin{lstlisting}
-"extensions": {
-  "org.scivault.peer_instruction": {
-    "recommended_discussion_time": 120
-  }
-}
-\end{lstlisting}
-
-Reverse-domain namespaces are recommended to reduce naming collisions.
-
-Applications should preserve extension namespaces they do not understand
-whenever practical.
-
-An application may ignore unsupported extension data.
-
-Core question correctness should not depend upon proprietary extension data
-when portability is intended.
-
-% ============================================================
-\section{Separation of Content and Operational Data}
-% ============================================================
-
-SciVault-QF represents question content.
-
-It shall not contain identifiable student or session information such as:
-
-\begin{itemize}
-    \item student names;
-    \item student IDs;
-    \item class rosters;
-    \item individual responses;
-    \item grades;
-    \item attendance;
-    \item assessment sessions;
-    \item peer-instruction rounds; or
-    \item response timestamps.
-\end{itemize}
-
-Applications shall store operational data separately and reference
-SciVault-QF questions using stable identifiers.
-
-% ============================================================
-\section{Validation}
-% ============================================================
-
-SciVault-QF validation consists of:
-
-\begin{enumerate}
-    \item structural validation using the official JSON Schema;
-    \item semantic validation using a SciVault-QF validator.
-\end{enumerate}
-
-The official schema uses JSON Schema Draft 2020-12.
-
-% ------------------------------------------------------------
-\subsection{Validation Severity}
-% ------------------------------------------------------------
-
-Findings have one of three severities.
-
-\begin{longtable}{|>{\ttfamily}p{2.5cm}|p{11cm}|}
-\hline
-error &
-The content violates a requirement or cannot be interpreted reliably.
-One or more errors make the document invalid. \\ \hline
-
-warning &
-The content remains valid but contains a potentially incomplete, ambiguous,
-undesirable, or unusual condition. \\ \hline
-
-info &
-Informational feedback that does not indicate a defect. \\ \hline
-\end{longtable}
-
-A document is \texttt{valid} when it contains no errors.
-
-A document is \texttt{invalid} when it contains one or more errors.
-
-Warnings do not make a document invalid.
-
-% ------------------------------------------------------------
-\subsection{Structural Errors}
-% ------------------------------------------------------------
-
-The official JSON Schema validates:
-
-\begin{itemize}
-    \item required fields;
-    \item field data types;
-    \item question types;
-    \item answer structures;
-    \item difficulty values;
-    \item media structures;
-    \item dynamic-variable structures;
-    \item ISO~8601 timestamps; and
-    \item unknown core fields.
-\end{itemize}
-
-JSON Schema validation failures are errors.
-
-% ------------------------------------------------------------
-\subsection{Semantic Errors}
-% ------------------------------------------------------------
-
-The semantic validator shall detect conditions including:
-
-\begin{itemize}
-    \item duplicate question IDs;
-    \item duplicate choice IDs;
-    \item answers referencing nonexistent choices;
-    \item malformed true/false choices;
-    \item variable minimum greater than maximum;
-    \item undefined variable placeholders;
-    \item undefined variables in expressions;
-    \item forbidden expression syntax;
-    \item missing required local media;
-    \item fill-in-the-blank questions without \texttt{\{\{blank\}\}}; and
-    \item violations of mandatory identifier rules.
-\end{itemize}
-
-% ------------------------------------------------------------
-\subsection{Warnings}
-% ------------------------------------------------------------
-
-Warnings may include:
-
-\begin{itemize}
-    \item missing explanation;
-    \item missing difficulty;
-    \item missing tags;
-    \item missing objectives;
-    \item inadequate image alternative text;
-    \item duplicate displayed choice text;
-    \item suspiciously similar answer choices;
-    \item unusually long question content;
-    \item unused dynamic variables;
-    \item unused media;
-    \item missing question-set ID;
-    \item missing question-set version; and
-    \item nonstandard extension namespaces.
-\end{itemize}
-
-% ------------------------------------------------------------
-\subsection{Validation Findings}
-% ------------------------------------------------------------
-
-Validators should return structured findings.
-
-Example:
-
-\begin{lstlisting}
-{
-  "severity": "error",
-  "code": "ANSWER_UNKNOWN_CHOICE",
-  "message":
-    "Answer 'E' does not reference an existing choice.",
-  "question_id": "q017",
-  "path": "questions[16].answer"
-}
-\end{lstlisting}
-
-Recommended fields are:
-
-\begin{itemize}
-    \item \texttt{severity};
-    \item \texttt{code};
-    \item \texttt{message};
-    \item \texttt{question\_id}, when applicable;
-    \item \texttt{path}, when applicable.
-\end{itemize}
-
-Stable machine-readable validation codes should be used.
-
-Initial codes include:
-
-\begin{lstlisting}
-DUPLICATE_QUESTION_ID
-DUPLICATE_CHOICE_ID
-ANSWER_UNKNOWN_CHOICE
-UNDEFINED_VARIABLE
-INVALID_VARIABLE_RANGE
-INVALID_EXPRESSION
-MISSING_MEDIA
-MISSING_BLANK
-MISSING_EXPLANATION
-MISSING_OBJECTIVES
-DUPLICATE_CHOICE_TEXT
-UNUSED_VARIABLE
-UNUSED_MEDIA
-\end{lstlisting}
-
-% ============================================================
-\section{Unsupported Features}
-% ============================================================
-
-A SciVault application is not required to implement every question type or
-feature defined by SciVault-QF.
-
-When encountering valid content it does not support, an application should:
-
-\begin{enumerate}
-    \item preserve the content;
-    \item identify it as unsupported;
-    \item avoid corrupting or deleting it; and
-    \item continue processing supported content whenever possible.
-\end{enumerate}
-
-For example, an early version of SciVault Peer Instruction may support only
-\texttt{multiple\_choice} even though the question bank contains other
-valid SciVault-QF question types.
-
-% ============================================================
-\section{Accessibility}
-% ============================================================
-
-Question authors and applications should consider accessibility throughout
-the content lifecycle.
-
-At minimum:
-
-\begin{itemize}
-    \item meaningful images shall contain alternative text;
-    \item correctness shall not depend solely on color;
-    \item mathematical expressions should be represented semantically when
-    practical;
-    \item questions should remain usable with assistive technology when
-    practical; and
-    \item descriptions should communicate media information required to
-    answer a question.
-\end{itemize}
-
-% ============================================================
-\section{Licensing}
-% ============================================================
-
-Each question collection shall specify a content license.
-
-Example:
-
-\begin{lstlisting}
-"license": "CC-BY-4.0"
-\end{lstlisting}
-
-The license governing SciVault software is independent of the license
-governing SciVault-QF content.
-
-Individual media objects may specify different licenses where necessary.
-
-% ============================================================
-\section{Question Types Defined by Version 0.1}
-% ============================================================
-
-\begin{longtable}{|>{\ttfamily}p{4cm}|p{9.5cm}|}
-\hline
-
-multiple\_choice &
-Exactly one correct answer selected from discrete choices. \\ \hline
-
-multiple\_select &
-One or more correct answers selected from discrete choices. \\ \hline
-
-true\_false &
-Binary true/false question. \\ \hline
-
-short\_answer &
-Short textual response. \\ \hline
-
-fill\_in\_the\_blank &
-One textual blank contained within a prompt. \\ \hline
-
-numerical &
-Numerical response with optional tolerance and physical unit. \\ \hline
-
-\end{longtable}
-
-% ============================================================
-\section{Future Considerations}
-% ============================================================
-
-Potential future features include:
-
-\begin{itemize}
-    \item multipart questions;
-    \item multiple independently scored blanks;
-    \item ranking;
-    \item matching;
-    \item ordering;
-    \item graphical responses;
-    \item image-region selection;
-    \item vector drawing;
-    \item symbolic equation entry;
-    \item extended-response questions;
-    \item passages and question groups;
-    \item random question pools;
-    \item conditional questions;
-    \item significant-figure checking;
-    \item physical-unit equivalence;
-    \item richer dynamic-expression syntax;
-    \item embedded SVG diagrams;
-    \item distractor misconception metadata;
-    \item empirical item-difficulty statistics;
-    \item discrimination indices;
-    \item standards-framework references;
-    \item localization and translated variants;
-    \item packaged question-bank formats; and
-    \item an expanded standard validation-code registry.
-\end{itemize}
-
-% ============================================================
-\section{Complete Example}
-% ============================================================
-
-\begin{lstlisting}
-{
-  "format": "SciVault-QF",
-  "format_version": "0.1",
-
-  "metadata": {
-    "id": "org.scivault.physics.kinematics",
-    "title": "Kinematics Concept Questions",
-    "description":
-      "Introductory kinematics questions.",
-    "author": "Jane Doe",
-    "license": "CC-BY-4.0",
-    "version": "1.0",
-    "language": "en-US",
-    "tags": [
-      "physics",
-      "kinematics"
-    ]
-  },
-
-  "questions": [
-    {
-      "id": "q001",
-      "type": "multiple_choice",
-
-      "question":
-        "An object starts from rest and accelerates at "
-        "$2\\,\\mathrm{m/s^2}$ for $5\\,\\mathrm{s}$. "
-        "What is its final velocity?",
-
-      "choices": [
-        {
-          "id": "A",
-          "text": "$5\\,\\mathrm{m/s}$"
-        },
-        {
-          "id": "B",
-          "text": "$10\\,\\mathrm{m/s}$"
-        },
-        {
-          "id": "C",
-          "text": "$15\\,\\mathrm{m/s}$"
-        },
-        {
-          "id": "D",
-          "text": "$20\\,\\mathrm{m/s}$"
-        }
-      ],
-
-      "answer": "B",
-
-      "explanation":
-        "Using $v=v_0+at$, "
-        "$v=0+(2)(5)=10\\,\\mathrm{m/s}$.",
-
-      "difficulty": 2,
-
-      "tags": [
-        "physics",
-        "kinematics",
-        "constant-acceleration"
-      ],
-
-      "objectives": [
-        "KIN-VELOCITY"
-      ],
-
-      "settings": {
-        "shuffle_choices": true
-      }
-    }
-  ]
-}
-\end{lstlisting}
-
-% ============================================================
-\section{Conformance}
-% ============================================================
-
-A document conforms to SciVault-QF 0.1 when:
-
-\begin{enumerate}
-    \item it is valid JSON encoded as UTF-8;
-    \item it identifies itself as \texttt{SciVault-QF};
-    \item its \texttt{format\_version} is \texttt{0.1};
-    \item it passes the official SciVault-QF 0.1 JSON Schema; and
-    \item it contains no errors identified by the normative SciVault-QF
-    semantic validation rules.
-\end{enumerate}
-
-Warnings and informational findings do not prevent conformance.
-
-% ============================================================
-\section{Summary}
-% ============================================================
-
-SciVault-QF provides the common question-content representation for the
-SciVault software ecosystem.
-
-Version 0.1 uses UTF-8 JSON and the standard \texttt{.json} extension.
-
-Question and answer-choice IDs are stable identifiers.
-
-Question content is kept separate from student and session data.
-
-SciVault-QF supports scientific and mathematical notation, media,
-difficulty metadata, learning objectives, dynamic variables, several
-question types, validation, and namespaced extensions.
-
-Future specifications may extend the question model and define a portable
-package format for question banks and associated resources.
-
+	
+	\maketitle
+	
+	\begin{abstract}
+		The SciVault Question Format (SciVault-QF) is an open,
+		application-independent format for representing and exchanging educational
+		questions and question banks. It provides a common question-content layer for
+		the SciVault software suite and may also be implemented by third-party
+		applications.
+		
+		SciVault-QF separates question content from presentation, assessment
+		sessions, student records, and results. This allows a question to be
+		authored once and reused for test generation, peer instruction, practice,
+		homework, online assessment, analytics, and other instructional purposes.
+	\end{abstract}
+	
+	\tableofcontents
+	\newpage
+	
+	% ============================================================
+	\section{Scope}
+	% ============================================================
+	
+	SciVault-QF defines the representation of educational questions and
+	collections of questions.
+	
+	It is intended to support applications including:
+	
+	\begin{itemize}
+		\item question-bank editors;
+		\item test and worksheet generators;
+		\item peer-instruction systems;
+		\item classroom-response systems;
+		\item homework and practice systems;
+		\item online assessments;
+		\item item-analysis systems;
+		\item learning analytics;
+		\item learning-management-system integrations; and
+		\item compatible third-party educational software.
+	\end{itemize}
+	
+	SciVault-QF does \textbf{not} define student accounts, classroom rosters,
+	assessment sessions, grades, or student responses.
+	
+	% ============================================================
+	\section{Design Goals}
+	% ============================================================
+	
+	SciVault-QF is designed to be:
+	
+	\begin{itemize}
+		\item human-readable;
+		\item machine-readable;
+		\item portable;
+		\item extensible;
+		\item suitable for version control;
+		\item independent of any particular database;
+		\item independent of any particular SciVault application;
+		\item suitable for mathematical and scientific content;
+		\item capable of referencing media;
+		\item suitable for static and dynamically generated questions; and
+		\item usable by software outside the SciVault suite.
+	\end{itemize}
+	
+	% ============================================================
+	\section{Format Identity}
+	% ============================================================
+	
+	The official name of the format is:
+	
+	\begin{center}
+		\textbf{SciVault Question Format}
+	\end{center}
+	
+	The abbreviated machine-readable identifier is:
+	
+	\begin{lstlisting}
+		SciVault-QF
+	\end{lstlisting}
+	
+	Version 0.1 files shall contain:
+	
+	\begin{lstlisting}
+		"format": "SciVault-QF",
+		"format_version": "0.1"
+	\end{lstlisting}
+	
+	% ============================================================
+	\section{File Representation}
+	% ============================================================
+	
+	SciVault-QF version 0.1 defines both a standalone JSON document
+	representation and a packaged question-set representation.
+	
+	A standalone SciVault-QF document uses:
+	
+	\begin{itemize}
+		\item \textbf{Encoding:} UTF-8
+		\item \textbf{Extension:} \texttt{.json}
+		\item \textbf{Recommended MIME type:} \texttt{application/json}
+	\end{itemize}
+	
+	Standalone JSON documents are suitable for development, validation, version
+	control, interchange, and applications that do not require bundled media.
+	
+	A packaged SciVault-QF question set uses the package format defined in the
+	following section. The package extension is \texttt{.sqf}.
+	
+	% ============================================================
+	\section{SciVault-QF Package Format}
+	% ============================================================
+	
+	A SciVault-QF package is a ZIP archive containing exactly one SciVault-QF
+	question set together with any locally distributed resources required by
+	that question set.
+	
+	\begin{itemize}
+		\item \textbf{Extension:} \texttt{.sqf}
+		\item \textbf{Container format:} ZIP
+		\item \textbf{Text encoding:} UTF-8
+		\item \textbf{Path separator:} \texttt{/}
+	\end{itemize}
+	
+	The \texttt{.sqf} extension identifies the file as a SciVault-QF package.
+	Applications shall interpret the file as a ZIP container conforming to the
+	rules in this section.
+	
+	% ------------------------------------------------------------
+	\subsection{Package Contents}
+	% ------------------------------------------------------------
+	
+	A minimal package contains:
+	
+	\begin{lstlisting}
+		example-set.sqf
+		|-- manifest.json
+		`-- questions.json
+	\end{lstlisting}
+	
+	A package containing local resources may contain:
+	
+	\begin{lstlisting}
+		example-set.sqf
+		|-- manifest.json
+		|-- questions.json
+		`-- media/
+		|-- diagram.svg
+		`-- setup-photo.jpg
+	\end{lstlisting}
+	
+	The package shall contain exactly one SciVault-QF question set.
+	
+	The file \texttt{manifest.json} shall appear at the root of the archive.
+	The SciVault-QF document referenced by the manifest shall also be contained
+	within the archive.
+	
+	The \texttt{media/} directory is optional. Files and subdirectories within
+	\texttt{media/} may be organized as appropriate for the question set.
+	Applications shall use media references in the SciVault-QF document rather
+	than infer resource meaning from directory or file names.
+	
+	% ------------------------------------------------------------
+	\subsection{Package Manifest}
+	% ------------------------------------------------------------
+	
+	The package manifest identifies the package format and the SciVault-QF
+	document contained in the package.
+	
+	A version 0.1 manifest has the following form:
+	
+	\begin{lstlisting}
+		{
+			"format": "SciVault-QF",
+			"format_version": "0.1",
+			"content": "questions.json"
+		}
+	\end{lstlisting}
+	
+	\begin{longtable}{|>{\ttfamily}p{3.0cm}|p{2.0cm}|p{1.7cm}|p{7.5cm}|}
+		\hline
+		\textbf{Field} & \textbf{Type} & \textbf{Required} &
+		\textbf{Description} \\ \hline
+		\endfirsthead
+		
+		format & String & Yes &
+		Must contain \texttt{SciVault-QF}. \\ \hline
+		
+		format\_version & String & Yes &
+		Version of the SciVault-QF package format. \\ \hline
+		
+		content & String & Yes &
+		Package-relative path to the SciVault-QF JSON document. \\ \hline
+		
+	\end{longtable}
+	
+	Version 0.1 packages should normally use \texttt{questions.json} as the
+	content filename. Readers shall use the \texttt{content} field rather than
+	assume a fixed filename.
+	
+	Question-set title, author, license, tags, and similar content metadata shall
+	remain in the SciVault-QF document and shall not be duplicated in the package
+	manifest.
+	
+	% ------------------------------------------------------------
+	\subsection{Package Paths}
+	% ------------------------------------------------------------
+	
+	Paths stored in a SciVault-QF package are relative to the package root.
+	Forward slashes shall be used as path separators regardless of the host
+	operating system.
+	
+	Package paths:
+	
+	\begin{itemize}
+		\item shall not be absolute;
+		\item shall not begin with \texttt{/};
+		\item shall not contain a path component equal to \texttt{..}; and
+		\item shall identify a unique archive entry.
+	\end{itemize}
+	
+	Duplicate ZIP entry names are invalid.
+	
+	Path names are case-sensitive for purposes of SciVault-QF package
+	resolution, even when a package is read on a case-insensitive file system.
+	
+	Readers that extract package contents shall prevent archive entries from
+	being written outside the intended extraction directory.
+	
+	% ------------------------------------------------------------
+	\subsection{Packaged Media}
+	% ------------------------------------------------------------
+	
+	A local media reference in a packaged question set shall use a
+	package-root-relative path.
+	
+	Example:
+	
+	\begin{lstlisting}
+		"src": "media/images/force-diagram.svg"
+	\end{lstlisting}
+	
+	This path refers to the archive entry:
+	
+	\begin{lstlisting}
+		media/images/force-diagram.svg
+	\end{lstlisting}
+	
+	Subdirectories within \texttt{media/} are permitted. Their organization is
+	not semantically significant; the \texttt{src} field is the authoritative
+	location of the referenced resource.
+	
+	% ============================================================
+	\section{Document Structure}
+	% ============================================================
+	
+	A SciVault-QF document contains metadata and one or more questions.
+	
+	\begin{lstlisting}
+		{
+			"format": "SciVault-QF",
+			"format_version": "0.1",
+			
+			"metadata": {
+				...
+			},
+			
+			"questions": [
+			...
+			]
+		}
+	\end{lstlisting}
+	
+	The top-level fields are:
+	
+	\begin{longtable}{|>{\ttfamily}p{3.0cm}|p{2.0cm}|p{1.7cm}|p{7.5cm}|}
+		\hline
+		\textbf{Field} & \textbf{Type} & \textbf{Required} &
+		\textbf{Description} \\ \hline
+		\endfirsthead
+		
+		format & String & Yes &
+		Must contain \texttt{SciVault-QF}. \\ \hline
+		
+		format\_version & String & Yes &
+		Version of this specification. \\ \hline
+		
+		metadata & Object & Yes &
+		Metadata describing the question collection. \\ \hline
+		
+		questions & Array & Yes &
+		Array containing one or more questions. \\ \hline
+		
+		extensions & Object & No &
+		Namespaced extension data. \\ \hline
+		
+	\end{longtable}
+	
+	Unknown fields shall not be inserted directly into core SciVault-QF
+	objects. Additional data shall use the extension mechanism described later
+	in this specification.
+	
+	% ============================================================
+	\section{Question-Set Metadata}
+	% ============================================================
+	
+	Example:
+	
+	\begin{lstlisting}
+		"metadata": {
+			"id": "org.scivault.physics.kinematics",
+			"title": "Kinematics Concept Questions",
+			"description":
+			"Conceptual and quantitative introductory kinematics questions.",
+			"author": "Jane Doe",
+			"license": "CC-BY-4.0",
+			"version": "1.0",
+			"language": "en-US",
+			"tags": [
+			"physics",
+			"kinematics"
+			],
+			"created": "2026-08-19T10:30:00-06:00",
+			"modified": "2026-08-19T10:45:00-06:00"
+		}
+	\end{lstlisting}
+	
+	\begin{longtable}{|>{\ttfamily}p{2.8cm}|p{1.8cm}|p{1.7cm}|p{7.8cm}|}
+		\hline
+		\textbf{Field} & \textbf{Type} & \textbf{Required} &
+		\textbf{Description} \\ \hline
+		\endfirsthead
+		
+		id & String & Recommended &
+		Stable identifier for the question collection. \\ \hline
+		
+		title & String & Yes &
+		Human-readable title. \\ \hline
+		
+		description & String & No &
+		Description of the collection. \\ \hline
+		
+		author & String & No &
+		Author or responsible organization. \\ \hline
+		
+		license & String & Yes &
+		License governing the question content. \\ \hline
+		
+		version & String & No &
+		Version of the question collection. \\ \hline
+		
+		language & String & No &
+		Content language or locale, preferably expressed using a BCP~47 tag such
+		as \texttt{en-US}. \\ \hline
+		
+		tags & Array & No &
+		Descriptive keywords applying to the collection. \\ \hline
+		
+		created & String & No &
+		Creation timestamp in ISO~8601 date-time format. \\ \hline
+		
+		modified & String & No &
+		Modification timestamp in ISO~8601 date-time format. \\ \hline
+		
+		extensions & Object & No &
+		Namespaced extension data. \\ \hline
+		
+	\end{longtable}
+	
+	The number of questions shall not be stored separately. Applications shall
+	determine it from the length of the \texttt{questions} array.
+	
+	% ============================================================
+	\section{Identifiers}
+	% ============================================================
+	
+	Each question shall have an ID unique within its question collection.
+	
+	Example:
+	
+	\begin{lstlisting}
+		"id": "q001"
+	\end{lstlisting}
+	
+	A stable namespace-style identifier is recommended for the question set:
+	
+	\begin{lstlisting}
+		"id": "org.scivault.physics.kinematics"
+	\end{lstlisting}
+	
+	The combination:
+	
+	\begin{lstlisting}
+		org.scivault.physics.kinematics:q001
+	\end{lstlisting}
+	
+	may therefore be treated as a globally meaningful reference to the
+	question.
+	
+	Applications shall not assume that IDs are numeric or sequential.
+	
+	Answer choices shall also have stable IDs unique within their question.
+	
+	% ============================================================
+	\section{Common Question Structure}
+	% ============================================================
+	
+	All questions shall contain:
+	
+	\begin{itemize}
+		\item \texttt{id};
+		\item \texttt{type};
+		\item \texttt{question}; and
+		\item \texttt{answer}.
+	\end{itemize}
+	
+	Questions may additionally contain:
+	
+	\begin{itemize}
+		\item \texttt{choices};
+		\item \texttt{explanation};
+		\item \texttt{hint};
+		\item \texttt{difficulty};
+		\item \texttt{tags};
+		\item \texttt{objectives};
+		\item \texttt{media};
+		\item \texttt{variables};
+		\item \texttt{settings};
+		\item \texttt{metadata}; and
+		\item \texttt{extensions}.
+	\end{itemize}
+	
+	Example:
+	
+	\begin{lstlisting}
+		{
+			"id": "q001",
+			"type": "multiple_choice",
+			"question": "What is $2+2$?",
+			"choices": [
+			{"id": "A", "text": "3"},
+			{"id": "B", "text": "4"},
+			{"id": "C", "text": "5"}
+			],
+			"answer": "B",
+			"explanation": "$2+2=4$.",
+			"difficulty": 1,
+			"tags": ["math", "arithmetic"]
+		}
+	\end{lstlisting}
+	
+	% ============================================================
+	\section{Text and Mathematical Notation}
+	% ============================================================
+	
+	Question prompts, choices, hints, explanations, and other textual content
+	may contain LaTeX-compatible mathematical notation.
+	
+	Example:
+	
+	\begin{lstlisting}
+		"What is the kinetic energy of a $4\\,\\mathrm{kg}$ object
+		moving at $3\\,\\mathrm{m/s}$?"
+	\end{lstlisting}
+	
+	Because backslashes have special meaning in JSON, LaTeX backslashes shall
+	be escaped.
+	
+	For example:
+	
+	\begin{lstlisting}
+		\frac{1}{2}mv^2
+	\end{lstlisting}
+	
+	is represented within a JSON string as:
+	
+	\begin{lstlisting}
+		"\\frac{1}{2}mv^2"
+	\end{lstlisting}
+	
+	Applications should use a mathematical rendering system such as MathJax or
+	KaTeX.
+	
+	% ============================================================
+	\section{Difficulty}
+	% ============================================================
+	
+	The optional \texttt{difficulty} field shall contain an integer from
+	0 through 10 inclusive.
+	
+	The scale is intended to permit question authors and applications to
+	classify questions with greater resolution than a small categorical scale.
+	
+	The endpoints may generally be interpreted as:
+	
+	\begin{center}
+		\begin{tabular}{|c|l|}
+			\hline
+			0 & Trivial or introductory \\ \hline
+			5 & Moderate \\ \hline
+			10 & Extremely difficult \\ \hline
+		\end{tabular}
+	\end{center}
+	
+	Intermediate values represent increasing levels of difficulty.
+	
+	Difficulty is primarily intended for:
+	
+	\begin{itemize}
+		\item filtering;
+		\item question-bank organization;
+		\item automatic test generation;
+		\item differentiated practice;
+		\item adaptive systems; and
+		\item instructional planning.
+	\end{itemize}
+	
+	A difficulty value is an author or system estimate unless supported by
+	empirical item statistics.
+	
+	% ============================================================
+	\section{Tags and Learning Objectives}
+	% ============================================================
+	
+	Tags provide descriptive classification.
+	
+	Example:
+	
+	\begin{lstlisting}
+		"tags": [
+		"physics",
+		"kinematics",
+		"constant-acceleration"
+		]
+	\end{lstlisting}
+	
+	Learning objectives are stored separately:
+	
+	\begin{lstlisting}
+		"objectives": [
+		"KIN-VELOCITY",
+		"PHY.KIN.3"
+		]
+	\end{lstlisting}
+	
+	This distinction permits questions to be searched broadly by topic while
+	also associating them with specific assessable outcomes.
+	
+	SciVault-QF does not require a particular learning-objective or standards
+	framework.
+	
+	% ============================================================
+	\section{Multiple-Choice Questions}
+	% ============================================================
+	
+	Multiple-choice questions use:
+	
+	\begin{lstlisting}
+		"type": "multiple_choice"
+	\end{lstlisting}
+	
+	They shall contain two or more choices and exactly one correct answer.
+	
+	\begin{lstlisting}
+		{
+			"id": "q001",
+			"type": "multiple_choice",
+			
+			"question":
+			"An object starts from rest and accelerates at "
+			"$2\\,\\mathrm{m/s^2}$ for $5\\,\\mathrm{s}$. "
+			"What is its final velocity?",
+			
+			"choices": [
+			{"id": "A", "text": "$5\\,\\mathrm{m/s}$"},
+			{"id": "B", "text": "$10\\,\\mathrm{m/s}$"},
+			{"id": "C", "text": "$15\\,\\mathrm{m/s}$"},
+			{"id": "D", "text": "$20\\,\\mathrm{m/s}$"}
+			],
+			
+			"answer": "B",
+			
+			"explanation":
+			"Using $v=v_0+at$, "
+			"$v=0+(2)(5)=10\\,\\mathrm{m/s}$.",
+			
+			"difficulty": 2
+		}
+	\end{lstlisting}
+	
+	The \texttt{answer} shall reference the stable ID of the correct choice.
+	Displayed answer text shall not serve as the answer identifier.
+	
+	% ============================================================
+	\section{Multiple-Select Questions}
+	% ============================================================
+	
+	Questions having more than one correct choice use:
+	
+	\begin{lstlisting}
+		"type": "multiple_select"
+	\end{lstlisting}
+	
+	The answer shall contain an array of correct choice IDs.
+	
+	\begin{lstlisting}
+		{
+			"id": "q002",
+			"type": "multiple_select",
+			"question": "Which of the following are vector quantities?",
+			"choices": [
+			{"id": "A", "text": "Velocity"},
+			{"id": "B", "text": "Mass"},
+			{"id": "C", "text": "Acceleration"},
+			{"id": "D", "text": "Temperature"}
+			],
+			"answer": ["A", "C"]
+		}
+	\end{lstlisting}
+	
+	% ============================================================
+	\section{True/False Questions}
+	% ============================================================
+	
+	True/false questions use:
+	
+	\begin{lstlisting}
+		"type": "true_false"
+	\end{lstlisting}
+	
+	They shall contain exactly two choices with the IDs:
+	
+	\begin{lstlisting}
+		true
+		false
+	\end{lstlisting}
+	
+	Example:
+	
+	\begin{lstlisting}
+		{
+			"id": "q003",
+			"type": "true_false",
+			"question": "An object moving at constant velocity has zero acceleration.",
+			"choices": [
+			{"id": "true", "text": "True"},
+			{"id": "false", "text": "False"}
+			],
+			"answer": "true"
+		}
+	\end{lstlisting}
+	
+	% ============================================================
+	\section{Short-Answer Questions}
+	% ============================================================
+	
+	Short-answer questions use:
+	
+	\begin{lstlisting}
+		"type": "short_answer"
+	\end{lstlisting}
+	
+	The answer may contain one acceptable response:
+	
+	\begin{lstlisting}
+		"answer": "photosynthesis"
+	\end{lstlisting}
+	
+	or multiple acceptable textual responses:
+	
+	\begin{lstlisting}
+		"answer": [
+		"photosynthesis",
+		"Photosynthesis"
+		]
+	\end{lstlisting}
+	
+	Applications may implement normalization, case-insensitive comparison,
+	teacher review, or other appropriate grading behavior.
+	
+	% ============================================================
+	\section{Fill-in-the-Blank Questions}
+	% ============================================================
+	
+	Fill-in-the-blank questions use:
+	
+	\begin{lstlisting}
+		"type": "fill_in_the_blank"
+	\end{lstlisting}
+	
+	Version 0.1 reserves:
+	
+	\begin{lstlisting}
+		{{blank}}
+	\end{lstlisting}
+	
+	as the blank placeholder.
+	
+	Example:
+	
+	\begin{lstlisting}
+		{
+			"id": "q004",
+			"type": "fill_in_the_blank",
+			"question": "The SI unit of force is the {{blank}}.",
+			"answer": ["newton", "Newton", "N"]
+		}
+	\end{lstlisting}
+	
+	Version 0.1 defines one scored blank per question.
+	Multiple independently scored blanks are reserved for a future revision.
+	
+	% ============================================================
+	\section{Numerical Questions}
+	% ============================================================
+	
+	Numerical questions use:
+	
+	\begin{lstlisting}
+		"type": "numerical"
+	\end{lstlisting}
+	
+	A static numerical answer may contain:
+	
+	\begin{lstlisting}
+		"answer": {
+			"value": 20,
+			"tolerance": 0.1,
+			"unit": "m/s"
+		}
+	\end{lstlisting}
+	
+	The \texttt{value} is the expected answer.
+	The optional \texttt{tolerance} specifies an absolute numerical tolerance.
+	The optional \texttt{unit} specifies the expected physical unit.
+	
+	A dynamically calculated answer may instead use an expression:
+	
+	\begin{lstlisting}
+		"answer": {
+			"expression": "a * t",
+			"tolerance": 0.01,
+			"unit": "m/s"
+		}
+	\end{lstlisting}
+	
+	Exactly one of \texttt{value} or \texttt{expression} shall be present.
+	
+	% ============================================================
+	\section{Hints and Explanations}
+	% ============================================================
+	
+	The optional \texttt{hint} field contains assistance that may be displayed
+	before the answer is revealed.
+	
+	Example:
+	
+	\begin{lstlisting}
+		"hint": "Identify the initial velocity, acceleration, and elapsed time."
+	\end{lstlisting}
+	
+	The optional \texttt{explanation} field contains feedback, reasoning, or a
+	worked solution.
+	
+	Example:
+	
+	\begin{lstlisting}
+		"explanation":
+		"Using $v=v_0+at$, "
+		"$v=0+(2)(5)=10\\,\\mathrm{m/s}$."
+	\end{lstlisting}
+	
+	Consuming applications determine when hints and explanations are displayed.
+	
+	% ============================================================
+	\section{Media}
+	% ============================================================
+	
+	Questions and answer choices may reference external media.
+	
+	Example:
+	
+	\begin{lstlisting}
+		"media": [
+		{
+			"id": "diagram1",
+			"type": "image",
+			"src": "media/incline.svg",
+			"alt": "A block resting on a 30 degree inclined plane."
+		}
+		]
+	\end{lstlisting}
+	
+	Version 0.1 recognizes the media types:
+	
+	\begin{itemize}
+		\item \texttt{image};
+		\item \texttt{audio};
+		\item \texttt{video}.
+	\end{itemize}
+	
+	Media objects may contain:
+	
+	\begin{itemize}
+		\item \texttt{id};
+		\item \texttt{type};
+		\item \texttt{src};
+		\item \texttt{alt};
+		\item \texttt{caption};
+		\item \texttt{credit};
+		\item \texttt{license}; and
+		\item \texttt{extensions}.
+	\end{itemize}
+	
+	Images shall contain an \texttt{alt} field.
+	
+	Relative paths are recommended for locally distributed resources. In a
+	SciVault-QF package, local \texttt{src} values shall be package-root-relative
+	paths as defined by the SciVault-QF Package Format section.
+	
+	% ============================================================
+	\section{Dynamic Questions}
+	% ============================================================
+	
+	Dynamic questions may define variables whose values are generated when the
+	question is instantiated.
+	
+	Variables are referenced using double braces.
+	
+	Example:
+	
+	\begin{lstlisting}
+		"question":
+		"An object accelerates at {{a}} m/s^2 "
+		"for {{t}} s. What is its change in velocity?"
+	\end{lstlisting}
+	
+	Version 0.1 defines:
+	
+	\begin{itemize}
+		\item integer variables;
+		\item decimal variables;
+		\item choice variables.
+	\end{itemize}
+	
+	\subsection{Integer Variables}
+	
+	\begin{lstlisting}
+		"a": {"type": "integer", "min": 1, "max": 5}
+	\end{lstlisting}
+	
+	An optional positive \texttt{step} may be specified.
+	
+	\subsection{Decimal Variables}
+	
+	\begin{lstlisting}
+		"mu": {"type": "decimal", "min": 0.1, "max": 1.0, "step": 0.1}
+	\end{lstlisting}
+	
+	\subsection{Choice Variables}
+	
+	\begin{lstlisting}
+		"planet": {
+			"type": "choice",
+			"values": ["Earth", "Mars", "Moon"]
+		}
+	\end{lstlisting}
+	
+	Choice-variable values may be strings, numbers, or Boolean values.
+	
+	% ============================================================
+	\section{Dynamic Expressions}
+	% ============================================================
+	
+	A dynamic numerical answer may be calculated from variables.
+	
+	Example:
+	
+	\begin{lstlisting}
+		{
+			"id": "q005",
+			"type": "numerical",
+			"question":
+			"An object starts from rest and accelerates at "
+			"{{a}} m/s^2 for {{t}} s. What is its final speed?",
+			"variables": {
+				"a": {"type": "integer", "min": 1, "max": 5},
+				"t": {"type": "integer", "min": 2, "max": 10}
+			},
+			"answer": {
+				"expression": "a * t",
+				"tolerance": 0.01,
+				"unit": "m/s"
+			}
+		}
+	\end{lstlisting}
+	
+	Expressions shall be evaluated by a restricted mathematical expression
+	engine.
+	
+	SciVault-QF files shall never cause arbitrary programming-language code to
+	be executed.
+	
+	The complete expression language is reserved for further specification.
+	
+	% ============================================================
+	\section{Randomization}
+	% ============================================================
+	
+	Applications may randomize:
+	
+	\begin{itemize}
+		\item question selection;
+		\item question order;
+		\item dynamic variable values; and
+		\item answer-choice order.
+	\end{itemize}
+	
+	Correctness is associated with stable choice IDs rather than displayed
+	positions.
+	
+	A question may recommend answer-choice shuffling:
+	
+	\begin{lstlisting}
+		"settings": {
+			"shuffle_choices": true
+		}
+	\end{lstlisting}
+	
+	% ============================================================
+	\section{Extensions}
+	% ============================================================
+	
+	SciVault-QF is extensible while maintaining strict core validation.
+	
+	Application-specific data shall be placed inside an \texttt{extensions}
+	object.
+	
+	Example:
+	
+	\begin{lstlisting}
+		"extensions": {
+			"org.scivault.peer_instruction": {
+				"recommended_discussion_time": 120
+			}
+		}
+	\end{lstlisting}
+	
+	Reverse-domain namespaces are recommended to reduce naming collisions.
+	Applications should preserve extension namespaces they do not understand
+	whenever practical.
+	An application may ignore unsupported extension data.
+	Core question correctness should not depend upon proprietary extension data
+	when portability is intended.
+	
+	% ============================================================
+	\section{Separation of Content and Operational Data}
+	% ============================================================
+	
+	SciVault-QF represents question content.
+	
+	It shall not contain identifiable student or session information such as:
+	
+	\begin{itemize}
+		\item student names;
+		\item student IDs;
+		\item class rosters;
+		\item individual responses;
+		\item grades;
+		\item attendance;
+		\item assessment sessions;
+		\item peer-instruction rounds; or
+		\item response timestamps.
+	\end{itemize}
+	
+	Applications shall store operational data separately and reference
+	SciVault-QF questions using stable identifiers.
+	
+	% ============================================================
+	\section{Validation}
+	% ============================================================
+	
+	SciVault-QF document validation consists of:
+	
+	\begin{enumerate}
+		\item structural validation using the official JSON Schema;
+		\item semantic validation using a SciVault-QF validator.
+	\end{enumerate}
+	
+	The official schema uses JSON Schema Draft 2020-12.
+	
+	Package validation additionally verifies the package manifest, archive paths,
+	contained document, and local resource references.
+	
+	\subsection{Validation Severity}
+	
+	Findings have one of three severities.
+	
+	\begin{longtable}{|>{\ttfamily}p{2.5cm}|p{11cm}|}
+		\hline
+		error &
+		The content violates a requirement or cannot be interpreted reliably.
+		One or more errors make the document or package invalid. \\ \hline
+		
+		warning &
+		The content remains valid but contains a potentially incomplete, ambiguous,
+		undesirable, or unusual condition. \\ \hline
+		
+		info &
+		Informational feedback that does not indicate a defect. \\ \hline
+	\end{longtable}
+	
+	Warnings do not make a document or package invalid.
+	
+	\subsection{Structural Errors}
+	
+	The official JSON Schema validates:
+	
+	\begin{itemize}
+		\item required fields;
+		\item field data types;
+		\item question types;
+		\item answer structures;
+		\item difficulty values;
+		\item media structures;
+		\item dynamic-variable structures;
+		\item ISO~8601 timestamps; and
+		\item unknown core fields.
+	\end{itemize}
+	
+	JSON Schema validation failures are errors.
+	
+	\subsection{Semantic Errors}
+	
+	The semantic validator shall detect conditions including:
+	
+	\begin{itemize}
+		\item duplicate question IDs;
+		\item duplicate choice IDs;
+		\item answers referencing nonexistent choices;
+		\item malformed true/false choices;
+		\item variable minimum greater than maximum;
+		\item undefined variable placeholders;
+		\item undefined variables in expressions;
+		\item forbidden expression syntax;
+		\item missing required local media;
+		\item fill-in-the-blank questions without \texttt{\{\{blank\}\}}; and
+		\item violations of mandatory identifier rules.
+	\end{itemize}
+	
+	\subsection{Warnings}
+	
+	Warnings may include:
+	
+	\begin{itemize}
+		\item missing explanation;
+		\item missing difficulty;
+		\item missing tags;
+		\item missing objectives;
+		\item inadequate image alternative text;
+		\item duplicate displayed choice text;
+		\item suspiciously similar answer choices;
+		\item unusually long question content;
+		\item unused dynamic variables;
+		\item unused media;
+		\item missing question-set ID;
+		\item missing question-set version; and
+		\item nonstandard extension namespaces.
+	\end{itemize}
+	
+	\subsection{Validation Findings}
+	
+	Validators should return structured findings.
+	
+	Example:
+	
+	\begin{lstlisting}
+		{
+			"severity": "error",
+			"code": "ANSWER_UNKNOWN_CHOICE",
+			"message": "Answer 'E' does not reference an existing choice.",
+			"question_id": "q017",
+			"path": "questions[16].answer"
+		}
+	\end{lstlisting}
+	
+	Recommended fields are:
+	
+	\begin{itemize}
+		\item \texttt{severity};
+		\item \texttt{code};
+		\item \texttt{message};
+		\item \texttt{question\_id}, when applicable;
+		\item \texttt{path}, when applicable.
+	\end{itemize}
+	
+	Stable machine-readable validation codes should be used.
+	
+	Initial codes include:
+	
+	\begin{lstlisting}
+		DUPLICATE_QUESTION_ID
+		DUPLICATE_CHOICE_ID
+		ANSWER_UNKNOWN_CHOICE
+		UNDEFINED_VARIABLE
+		INVALID_VARIABLE_RANGE
+		INVALID_EXPRESSION
+		MISSING_MEDIA
+		MISSING_BLANK
+		MISSING_EXPLANATION
+		MISSING_OBJECTIVES
+		DUPLICATE_CHOICE_TEXT
+		UNUSED_VARIABLE
+		UNUSED_MEDIA
+	\end{lstlisting}
+	
+	% ============================================================
+	\section{Unsupported Features}
+	% ============================================================
+	
+	A SciVault application is not required to implement every question type or
+	feature defined by SciVault-QF.
+	
+	When encountering valid content it does not support, an application should:
+	
+	\begin{enumerate}
+		\item preserve the content;
+		\item identify it as unsupported;
+		\item avoid corrupting or deleting it; and
+		\item continue processing supported content whenever possible.
+	\end{enumerate}
+	
+	For example, an early version of SciVault Peer Instruction may support only
+	\texttt{multiple\_choice} even though the question bank contains other
+	valid SciVault-QF question types.
+	
+	% ============================================================
+	\section{Accessibility}
+	% ============================================================
+	
+	Question authors and applications should consider accessibility throughout
+	the content lifecycle.
+	
+	At minimum:
+	
+	\begin{itemize}
+		\item meaningful images shall contain alternative text;
+		\item correctness shall not depend solely on color;
+		\item mathematical expressions should be represented semantically when
+		practical;
+		\item questions should remain usable with assistive technology when
+		practical; and
+		\item descriptions should communicate media information required to
+		answer a question.
+	\end{itemize}
+	
+	% ============================================================
+	\section{Licensing}
+	% ============================================================
+	
+	Each question collection shall specify a content license.
+	
+	Example:
+	
+	\begin{lstlisting}
+		"license": "CC-BY-4.0"
+	\end{lstlisting}
+	
+	The license governing SciVault software is independent of the license
+	governing SciVault-QF content.
+	
+	Individual media objects may specify different licenses where necessary.
+	
+	% ============================================================
+	\section{Question Types Defined by Version 0.1}
+	% ============================================================
+	
+	\begin{longtable}{|>{\ttfamily}p{4cm}|p{9.5cm}|}
+		\hline
+		multiple\_choice & Exactly one correct answer selected from discrete choices. \\ \hline
+		multiple\_select & One or more correct answers selected from discrete choices. \\ \hline
+		true\_false & Binary true/false question. \\ \hline
+		short\_answer & Short textual response. \\ \hline
+		fill\_in\_the\_blank & One textual blank contained within a prompt. \\ \hline
+		numerical & Numerical response with optional tolerance and physical unit. \\ \hline
+	\end{longtable}
+	
+	% ============================================================
+	\section{Future Considerations}
+	% ============================================================
+	
+	Potential future features include:
+	
+	\begin{itemize}
+		\item multipart questions;
+		\item multiple independently scored blanks;
+		\item ranking;
+		\item matching;
+		\item ordering;
+		\item graphical responses;
+		\item image-region selection;
+		\item vector drawing;
+		\item symbolic equation entry;
+		\item extended-response questions;
+		\item passages and question groups;
+		\item random question pools;
+		\item conditional questions;
+		\item significant-figure checking;
+		\item physical-unit equivalence;
+		\item richer dynamic-expression syntax;
+		\item embedded SVG diagrams;
+		\item distractor misconception metadata;
+		\item empirical item-difficulty statistics;
+		\item discrimination indices;
+		\item standards-framework references;
+		\item localization and translated variants; and
+		\item an expanded standard validation-code registry.
+	\end{itemize}
+	
+	% ============================================================
+	\section{Complete Example}
+	% ============================================================
+	
+	\begin{lstlisting}
+		{
+			"format": "SciVault-QF",
+			"format_version": "0.1",
+			"metadata": {
+				"id": "org.scivault.physics.kinematics",
+				"title": "Kinematics Concept Questions",
+				"description": "Introductory kinematics questions.",
+				"author": "Jane Doe",
+				"license": "CC-BY-4.0",
+				"version": "1.0",
+				"language": "en-US",
+				"tags": ["physics", "kinematics"]
+			},
+			"questions": [
+			{
+				"id": "q001",
+				"type": "multiple_choice",
+				"question":
+				"An object starts from rest and accelerates at "
+				"$2\\,\\mathrm{m/s^2}$ for $5\\,\\mathrm{s}$. "
+				"What is its final velocity?",
+				"choices": [
+				{"id": "A", "text": "$5\\,\\mathrm{m/s}$"},
+				{"id": "B", "text": "$10\\,\\mathrm{m/s}$"},
+				{"id": "C", "text": "$15\\,\\mathrm{m/s}$"},
+				{"id": "D", "text": "$20\\,\\mathrm{m/s}$"}
+				],
+				"answer": "B",
+				"explanation":
+				"Using $v=v_0+at$, $v=0+(2)(5)=10\\,\\mathrm{m/s}$.",
+				"difficulty": 2,
+				"tags": ["physics", "kinematics", "constant-acceleration"],
+				"objectives": ["KIN-VELOCITY"],
+				"settings": {"shuffle_choices": true}
+			}
+			]
+		}
+	\end{lstlisting}
+	
+	% ============================================================
+	\section{Conformance}
+	% ============================================================
+	
+	A standalone document conforms to SciVault-QF 0.1 when:
+	
+	\begin{enumerate}
+		\item it is valid JSON encoded as UTF-8;
+		\item it identifies itself as \texttt{SciVault-QF};
+		\item its \texttt{format\_version} is \texttt{0.1};
+		\item it passes the official SciVault-QF 0.1 JSON Schema; and
+		\item it contains no errors identified by the normative SciVault-QF
+		semantic validation rules.
+	\end{enumerate}
+	
+	A SciVault-QF package conforms to version 0.1 when:
+	
+	\begin{enumerate}
+		\item it is a valid ZIP archive using the \texttt{.sqf} extension;
+		\item it contains a valid root-level \texttt{manifest.json};
+		\item the manifest identifies \texttt{SciVault-QF} version \texttt{0.1};
+		\item the manifest references exactly one contained SciVault-QF document;
+		\item the referenced document conforms to SciVault-QF 0.1;
+		\item all required local media references resolve to valid package entries;
+		\item package paths satisfy the package path requirements; and
+		\item it contains no package-level semantic validation errors.
+	\end{enumerate}
+	
+	Warnings and informational findings do not prevent conformance.
+	
+	% ============================================================
+	\section{Summary}
+	% ============================================================
+	
+	SciVault-QF provides the common question-content representation for the
+	SciVault software ecosystem.
+	
+	Version 0.1 supports standalone UTF-8 JSON documents using the standard
+	\texttt{.json} extension and portable ZIP-based question-set packages using
+	the \texttt{.sqf} extension.
+	
+	Question and answer-choice IDs are stable identifiers.
+	Question content is kept separate from student and session data.
+	
+	SciVault-QF supports scientific and mathematical notation, media,
+	difficulty metadata, learning objectives, dynamic variables, several
+	question types, validation, and namespaced extensions.
+	
+	SciVault-QF packages may contain one question set and its associated local
+	resources. Future specifications may extend the question model and package
+	capabilities while preserving portable interchange.
+	
 \end{document}
-```
