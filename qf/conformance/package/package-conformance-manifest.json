@@ -1,0 +1,58 @@
+{
+  "format": "SciVault-QF-Package-Conformance",
+  "format_version": "0.1",
+  "tests": [
+    {
+      "file": "valid/minimal.sqf",
+      "expected": "valid",
+      "description": "Minimal valid SciVault-QF package."
+    },
+    {
+      "file": "valid/with-media.sqf",
+      "expected": "valid",
+      "description": "Valid package containing correctly referenced local media."
+    },
+    {
+      "file": "valid-with-warnings/unreferenced-resource.sqf",
+      "expected": "valid-with-warnings",
+      "finding": "PACKAGE_UNREFERENCED_RESOURCE",
+      "description": "Valid package containing a resource not referenced by the question document."
+    },
+    {
+      "file": "invalid/missing-manifest.sqf",
+      "expected": "invalid",
+      "finding": "PACKAGE_MISSING_MANIFEST",
+      "description": "Package does not contain the required root manifest.json."
+    },
+    {
+      "file": "invalid/invalid-manifest.sqf",
+      "expected": "invalid",
+      "finding": "PACKAGE_INVALID_MANIFEST",
+      "description": "Package manifest omits the required content field."
+    },
+    {
+      "file": "invalid/missing-content.sqf",
+      "expected": "invalid",
+      "finding": "PACKAGE_MISSING_CONTENT",
+      "description": "Manifest references a question document that is absent from the package."
+    },
+    {
+      "file": "invalid/unsafe-path.sqf",
+      "expected": "invalid",
+      "finding": "PACKAGE_UNSAFE_PATH",
+      "description": "Manifest content path attempts to traverse outside the package root."
+    },
+    {
+      "file": "invalid/missing-media.sqf",
+      "expected": "invalid",
+      "finding": "PACKAGE_MISSING_MEDIA",
+      "description": "Question document references a local media resource that is absent from the package."
+    },
+    {
+      "file": "invalid/duplicate-entry.sqf",
+      "expected": "invalid",
+      "finding": "PACKAGE_DUPLICATE_ENTRY",
+      "description": "ZIP archive contains duplicate entry names."
+    }
+  ]
+}
