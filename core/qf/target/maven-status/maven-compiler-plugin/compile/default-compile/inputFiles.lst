@@ -3,6 +3,7 @@
 /home/kb5vei/School/scivault-software/core/qf/src/main/java/org/scivault/qf/QfPackageManifest.java
 /home/kb5vei/School/scivault-software/core/qf/src/main/java/org/scivault/qf/QfPackageReader.java
 /home/kb5vei/School/scivault-software/core/qf/src/main/java/org/scivault/qf/QfPackageValidator.java
+/home/kb5vei/School/scivault-software/core/qf/src/main/java/org/scivault/qf/QfPackageWriter.java
 /home/kb5vei/School/scivault-software/core/qf/src/main/java/org/scivault/qf/QfReader.java
 /home/kb5vei/School/scivault-software/core/qf/src/main/java/org/scivault/qf/QfWriter.java
 /home/kb5vei/School/scivault-software/core/qf/src/main/java/org/scivault/qf/SciVaultQfValidator.java

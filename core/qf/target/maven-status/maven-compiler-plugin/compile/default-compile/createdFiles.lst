@@ -21,6 +21,7 @@ org/scivault/qf/model/Media.class
 org/scivault/qf/QfWriter.class
 org/scivault/qf/model/SetMetadata.class
 org/scivault/qf/model/MultipleChoiceQuestion.class
+org/scivault/qf/QfPackageWriter.class
 org/scivault/qf/model/MultipleSelectQuestion.class
 org/scivault/qf/model/FillInTheBlankQuestion.class
 org/scivault/qf/model/Question.class
