@@ -1,6 +1,7 @@
 /home/kb5vei/School/scivault-software/core/qf/src/test/java/org/scivault/qf/ConformanceTest.java
 /home/kb5vei/School/scivault-software/core/qf/src/test/java/org/scivault/qf/ExpressionValidatorTest.java
 /home/kb5vei/School/scivault-software/core/qf/src/test/java/org/scivault/qf/QfPackageConformanceTest.java
+/home/kb5vei/School/scivault-software/core/qf/src/test/java/org/scivault/qf/QfPackageReaderTest.java
 /home/kb5vei/School/scivault-software/core/qf/src/test/java/org/scivault/qf/QfPackageValidatorTest.java
 /home/kb5vei/School/scivault-software/core/qf/src/test/java/org/scivault/qf/QfReaderTest.java
 /home/kb5vei/School/scivault-software/core/qf/src/test/java/org/scivault/qf/QfWriterTest.java

@@ -11,6 +11,7 @@ org/scivault/qf/model/NumericalQuestion.class
 org/scivault/qf/model/TrueFalseQuestion.class
 org/scivault/qf/model/Choice.class
 org/scivault/qf/ValidationResult.class
+org/scivault/qf/QfPackageReader.class
 org/scivault/qf/QfPackageValidator.class
 org/scivault/qf/model/QuestionSettings.class
 org/scivault/qf/model/ChoiceVariable.class
