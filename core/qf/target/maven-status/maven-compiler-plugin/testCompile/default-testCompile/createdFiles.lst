@@ -1,6 +1,8 @@
-org/scivault/qf/QfWriterTest.class
 org/scivault/qf/ConformanceTest.class
+org/scivault/qf/QfWriterTest.class
+org/scivault/qf/QfPackageValidatorTest.class
 org/scivault/qf/QfReaderTest.class
+org/scivault/qf/QfPackageConformanceTest.class
 org/scivault/qf/SciVaultQfConformanceSmokeTest.class
 org/scivault/qf/ExpressionValidatorTest.class
 org/scivault/qf/SciVaultQfValidatorTest.class

@@ -61,7 +61,8 @@ public class ValidationResult {
     public boolean isEmpty() {
         return findings.isEmpty();
     }
+
     public void add(Finding finding) {
-    findings.add(finding);
-}
+        findings.add(finding);
+    }
 }
