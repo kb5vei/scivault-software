@@ -14,6 +14,7 @@ public class Media {
     private String type;
     private String alt;
     private String caption;
+    private String credit;
     private String license;
 
     /*
@@ -64,6 +65,14 @@ public class Media {
 
     public void setCaption(String caption) {
         this.caption = caption;
+    }
+
+    public String getCredit() {
+        return credit;
+    }
+
+    public void setCredit(String credit) {
+        this.credit = credit;
     }
 
     public String getLicense() {

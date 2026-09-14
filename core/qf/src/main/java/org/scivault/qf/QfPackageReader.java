@@ -69,7 +69,7 @@ public final class QfPackageReader {
             String resourcePath)
             throws IOException {
 
-        if (!isSafePackagePath(resourcePath)) {
+        if (!QfPackagePath.isSafe(resourcePath)) {
             throw new IOException(
                     "Unsafe package resource path: "
                             + resourcePath
@@ -97,41 +97,5 @@ public final class QfPackageReader {
                 return input.readAllBytes();
             }
         }
-    }
-
-    private static boolean isSafePackagePath(
-            String path) {
-
-        if (path == null || path.isEmpty()) {
-            return false;
-        }
-
-        if (path.contains("\\")) {
-            return false;
-        }
-
-        if (path.startsWith("/")) {
-            return false;
-        }
-
-        if (path.length() >= 2
-                && Character.isLetter(path.charAt(0))
-                && path.charAt(1) == ':') {
-
-            return false;
-        }
-
-        String[] components = path.split("/");
-
-        for (String component : components) {
-
-            if (".".equals(component)
-                    || "..".equals(component)) {
-
-                return false;
-            }
-        }
-
-        return true;
     }
 }

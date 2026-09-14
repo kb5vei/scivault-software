@@ -19,6 +19,7 @@ public class SetMetadata {
     private String language;
     private String description;
     private String created;
+    private String modified;
 
     private List<String> tags = new ArrayList<>();
 
@@ -94,6 +95,14 @@ public class SetMetadata {
 
     public void setCreated(String created) {
         this.created = created;
+    }
+
+    public String getModified() {
+        return modified;
+    }
+
+    public void setModified(String modified) {
+        this.modified = modified;
     }
 
     public List<String> getTags() {

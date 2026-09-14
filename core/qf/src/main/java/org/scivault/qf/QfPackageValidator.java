@@ -26,22 +26,29 @@ public final class QfPackageValidator {
             Set<String> names = new HashSet<>();
             boolean hasManifest = false;
 
-            for (ZipEntry entry : Collections.list(zip.entries())) {
-                String name = entry.getName();
+for (ZipEntry entry : Collections.list(zip.entries())) {
+    String name = entry.getName();
 
-                if (!names.add(name)) {
-                    result.addError(
-                            "PACKAGE_DUPLICATE_ENTRY",
-                            "Package contains duplicate entry: " + name,
-                            name
-                    );
-                }
+    if (!names.add(name)) {
+        result.addError(
+                "PACKAGE_DUPLICATE_ENTRY",
+                "Package contains duplicate entry: " + name,
+                name
+        );
+    }
 
-                if ("manifest.json".equals(name)) {
-                    hasManifest = true;
-                }
-            }
+    if (!QfPackagePath.isSafe(name)) {
+        result.addError(
+                "PACKAGE_UNSAFE_PATH",
+                "Package contains unsafe entry path: " + name,
+                name
+        );
+    }
 
+    if ("manifest.json".equals(name)) {
+        hasManifest = true;
+    }
+}
             if (!hasManifest) {
                 result.addError(
                         "PACKAGE_MISSING_MANIFEST",
@@ -84,7 +91,7 @@ public final class QfPackageValidator {
 
             String contentPath = manifest.getContent();
 
-            if (!isSafePackagePath(contentPath)) {
+            if (!QfPackagePath.isSafe(contentPath)) {
                 result.addError(
                         "PACKAGE_UNSAFE_PATH",
                         "Package contains unsafe path: " + contentPath,
@@ -229,7 +236,7 @@ public final class QfPackageValidator {
                 continue;
             }
 
-            if (!isSafePackagePath(src)) {
+            if (!QfPackagePath.isSafe(src)) {
                 result.addError(
                         "PACKAGE_UNSAFE_PATH",
                         "Media reference contains unsafe path: " + src,
@@ -259,37 +266,5 @@ public final class QfPackageValidator {
         return src.matches(
                 "^[A-Za-z][A-Za-z0-9+.-]*://.*"
         );
-    }
-
-    private static boolean isSafePackagePath(String path) {
-
-        if (path == null || path.isEmpty()) {
-            return false;
-        }
-
-        if (path.contains("\\")) {
-            return false;
-        }
-
-        if (path.startsWith("/")) {
-            return false;
-        }
-
-        if (path.length() >= 2
-                && Character.isLetter(path.charAt(0))
-                && path.charAt(1) == ':') {
-            return false;
-        }
-
-        String[] components = path.split("/");
-
-        for (String component : components) {
-            if (".".equals(component)
-                    || "..".equals(component)) {
-                return false;
-            }
-        }
-
-        return true;
     }
 }

@@ -48,15 +48,21 @@ public abstract class Question {
     private String id;
     private String question;
     private String explanation;
+    private String hint;
     private Integer difficulty;
 
     private List<String> tags = new ArrayList<>();
     private List<String> objectives = new ArrayList<>();
     private List<Media> media = new ArrayList<>();
 
-    private Map<String, Variable> variables = new LinkedHashMap<>();
+    private Map<String, Variable> variables =
+            new LinkedHashMap<>();
 
     private QuestionSettings settings;
+
+    private Map<String, JsonNode> metadata =
+            new LinkedHashMap<>();
+
     private Extensions extensions;
 
     /*
@@ -95,6 +101,14 @@ public abstract class Question {
         this.explanation = explanation;
     }
 
+    public String getHint() {
+        return hint;
+    }
+
+    public void setHint(String hint) {
+        this.hint = hint;
+    }
+
     public Integer getDifficulty() {
         return difficulty;
     }
@@ -131,7 +145,8 @@ public abstract class Question {
         return variables;
     }
 
-    public void setVariables(Map<String, Variable> variables) {
+    public void setVariables(
+            Map<String, Variable> variables) {
         this.variables = variables;
     }
 
@@ -139,8 +154,18 @@ public abstract class Question {
         return settings;
     }
 
-    public void setSettings(QuestionSettings settings) {
+    public void setSettings(
+            QuestionSettings settings) {
         this.settings = settings;
+    }
+
+    public Map<String, JsonNode> getMetadata() {
+        return metadata;
+    }
+
+    public void setMetadata(
+            Map<String, JsonNode> metadata) {
+        this.metadata = metadata;
     }
 
     public Extensions getExtensions() {
@@ -157,7 +182,9 @@ public abstract class Question {
     }
 
     @JsonAnySetter
-    public void putAdditionalProperty(String name, JsonNode value) {
+    public void putAdditionalProperty(
+            String name,
+            JsonNode value) {
         additionalProperties.put(name, value);
     }
 

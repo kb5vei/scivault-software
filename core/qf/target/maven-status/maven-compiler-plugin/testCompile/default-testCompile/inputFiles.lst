@@ -3,6 +3,10 @@
 /home/kb5vei/School/scivault-software/core/qf/src/test/java/org/scivault/qf/QfPackageConformanceTest.java
 /home/kb5vei/School/scivault-software/core/qf/src/test/java/org/scivault/qf/QfPackageReaderTest.java
 /home/kb5vei/School/scivault-software/core/qf/src/test/java/org/scivault/qf/QfPackageValidatorTest.java
+/home/kb5vei/School/scivault-software/core/qf/src/test/java/org/scivault/qf/QfPackageWriterTest.java
+/home/kb5vei/School/scivault-software/core/qf/src/test/java/org/scivault/qf/QfReaderChoiceVariableTest.java
+/home/kb5vei/School/scivault-software/core/qf/src/test/java/org/scivault/qf/QfReaderOfficialFieldsTest.java
+/home/kb5vei/School/scivault-software/core/qf/src/test/java/org/scivault/qf/QfReaderSingleStringAnswerTest.java
 /home/kb5vei/School/scivault-software/core/qf/src/test/java/org/scivault/qf/QfReaderTest.java
 /home/kb5vei/School/scivault-software/core/qf/src/test/java/org/scivault/qf/QfWriterTest.java
 /home/kb5vei/School/scivault-software/core/qf/src/test/java/org/scivault/qf/SciVaultQfConformanceSmokeTest.java

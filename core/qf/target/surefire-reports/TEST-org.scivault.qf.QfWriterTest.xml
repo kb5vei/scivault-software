@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report-3.0.xsd" version="3.0" name="org.scivault.qf.QfWriterTest" time="0.046" tests="4" errors="0" skipped="0" failures="0">
+<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report-3.0.xsd" version="3.0" name="org.scivault.qf.QfWriterTest" time="0.04" tests="4" errors="0" skipped="0" failures="0">
   <properties>
     <property name="sun.desktop" value="gnome"/>
     <property name="awt.toolkit" value="sun.awt.X11.XToolkit"/>
@@ -16,7 +16,7 @@
     <property name="sun.java.launcher" value="SUN_STANDARD"/>
     <property name="user.country" value="US"/>
     <property name="sun.boot.library.path" value="/usr/lib/jvm/java-11-openjdk-11.0.13.0.8-2.fc33.x86_64/lib"/>
-    <property name="sun.java.command" value="/home/kb5vei/School/scivault-software/core/qf/target/surefire/surefirebooter-20260909155823890_3.jar /home/kb5vei/School/scivault-software/core/qf/target/surefire 2026-09-09T15-58-23_829-jvmRun1 surefire-20260909155823890_1tmp surefire_0-20260909155823890_2tmp"/>
+    <property name="sun.java.command" value="/home/kb5vei/School/scivault-software/core/qf/target/surefire/surefirebooter-20260914114144493_3.jar /home/kb5vei/School/scivault-software/core/qf/target/surefire 2026-09-14T11-41-44_427-jvmRun1 surefire-20260914114144493_1tmp surefire_0-20260914114144493_2tmp"/>
     <property name="jdk.debug" value="release"/>
     <property name="surefire.test.class.path" value="/home/kb5vei/School/scivault-software/core/qf/target/test-classes:/home/kb5vei/School/scivault-software/core/qf/target/classes:/home/kb5vei/.m2/repository/com/fasterxml/jackson/core/jackson-databind/2.17.2/jackson-databind-2.17.2.jar:/home/kb5vei/.m2/repository/com/fasterxml/jackson/core/jackson-annotations/2.17.2/jackson-annotations-2.17.2.jar:/home/kb5vei/.m2/repository/com/fasterxml/jackson/core/jackson-core/2.17.2/jackson-core-2.17.2.jar:/home/kb5vei/.m2/repository/com/networknt/json-schema-validator/2.0.4/json-schema-validator-2.0.4.jar:/home/kb5vei/.m2/repository/com/ethlo/time/itu/1.14.0/itu-1.14.0.jar:/home/kb5vei/.m2/repository/com/fasterxml/jackson/dataformat/jackson-dataformat-yaml/2.18.4/jackson-dataformat-yaml-2.18.4.jar:/home/kb5vei/.m2/repository/org/yaml/snakeyaml/2.3/snakeyaml-2.3.jar:/home/kb5vei/.m2/repository/org/slf4j/slf4j-api/2.0.17/slf4j-api-2.0.17.jar:/home/kb5vei/.m2/repository/org/junit/jupiter/junit-jupiter/5.10.2/junit-jupiter-5.10.2.jar:/home/kb5vei/.m2/repository/org/junit/jupiter/junit-jupiter-api/5.10.2/junit-jupiter-api-5.10.2.jar:/home/kb5vei/.m2/repository/org/opentest4j/opentest4j/1.3.0/opentest4j-1.3.0.jar:/home/kb5vei/.m2/repository/org/junit/platform/junit-platform-commons/1.10.2/junit-platform-commons-1.10.2.jar:/home/kb5vei/.m2/repository/org/apiguardian/apiguardian-api/1.1.2/apiguardian-api-1.1.2.jar:/home/kb5vei/.m2/repository/org/junit/jupiter/junit-jupiter-params/5.10.2/junit-jupiter-params-5.10.2.jar:/home/kb5vei/.m2/repository/org/junit/jupiter/junit-jupiter-engine/5.10.2/junit-jupiter-engine-5.10.2.jar:/home/kb5vei/.m2/repository/org/junit/platform/junit-platform-engine/1.10.2/junit-platform-engine-1.10.2.jar:"/>
     <property name="sun.cpu.endian" value="little"/>
@@ -32,7 +32,8 @@
     <property name="java.specification.name" value="Java Platform API Specification"/>
     <property name="java.vm.specification.vendor" value="Oracle Corporation"/>
     <property name="java.awt.graphicsenv" value="sun.awt.X11GraphicsEnvironment"/>
-    <property name="surefire.real.class.path" value="/home/kb5vei/School/scivault-software/core/qf/target/surefire/surefirebooter-20260909155823890_3.jar"/>
+    <property name="qf.verbose" value="true"/>
+    <property name="surefire.real.class.path" value="/home/kb5vei/School/scivault-software/core/qf/target/surefire/surefirebooter-20260914114144493_3.jar"/>
     <property name="sun.management.compiler" value="HotSpot 64-Bit Tiered Compilers"/>
     <property name="java.runtime.version" value="11.0.13+8"/>
     <property name="user.name" value="kb5vei"/>
@@ -58,8 +59,301 @@
     <property name="sun.io.unicode.encoding" value="UnicodeLittle"/>
     <property name="java.class.version" value="55.0"/>
   </properties>
-  <testcase name="preservesUnknownPropertiesThroughRoundTrip" classname="org.scivault.qf.QfWriterTest" time="0.01"/>
-  <testcase name="writesAndReadsMixedQuestionTypesFixture" classname="org.scivault.qf.QfWriterTest" time="0.023"/>
-  <testcase name="writesAndReadsDynamicAndMediaFixture" classname="org.scivault.qf.QfWriterTest" time="0.006"/>
-  <testcase name="writesAndReadsBasicMultipleChoiceFixture" classname="org.scivault.qf.QfWriterTest" time="0.004"/>
+  <testcase name="preservesUnknownPropertiesThroughRoundTrip" classname="org.scivault.qf.QfWriterTest" time="0.009">
+    <system-out><![CDATA[
+=== QfWriter: unknown property round trip ===
+Temporary file: /tmp/scivault-qf-writer-output-4950626267518624760.json
+
+{
+  "format" : "SciVault-QF",
+  "metadata" : {
+    "id" : "org.scivault.test.writer-unknown-properties",
+    "title" : "Writer Unknown Property Test",
+    "tags" : [ ],
+    "future_metadata_field" : "preserve me"
+  },
+  "questions" : [ {
+    "id" : "q001",
+    "question" : "Test question",
+    "tags" : [ ],
+    "objectives" : [ ],
+    "media" : [ ],
+    "variables" : { },
+    "settings" : {
+      "shuffle_choices" : true,
+      "future_setting" : "setting data"
+    },
+    "metadata" : { },
+    "choices" : [ {
+      "id" : "A",
+      "text" : "Answer A",
+      "media" : [ ],
+      "future_choice_field" : "choice data"
+    }, {
+      "id" : "B",
+      "text" : "Answer B",
+      "media" : [ ]
+    } ],
+    "answer" : "A",
+    "type" : "multiple_choice",
+    "future_question_field" : 42
+  } ],
+  "format_version" : "0.1"
+}
+]]></system-out>
+  </testcase>
+  <testcase name="writesAndReadsMixedQuestionTypesFixture" classname="org.scivault.qf.QfWriterTest" time="0.018">
+    <system-out><![CDATA[
+=== QfWriter: mixed-question-types.json ===
+Temporary file: /tmp/scivault-qf-writer-mixed-8169493343241747452.json
+
+{
+  "format" : "SciVault-QF",
+  "metadata" : {
+    "id" : "org.scivault.conformance.mixed-question-types",
+    "title" : "Mixed Question Types Conformance Test",
+    "author" : "SciVault",
+    "license" : "CC0-1.0",
+    "version" : "1.0",
+    "language" : "en-US",
+    "description" : "Valid SciVault-QF 0.1 question set containing several supported question types.",
+    "created" : "2026-08-19T12:29:00-06:00",
+    "tags" : [ "conformance", "mixed-types" ]
+  },
+  "questions" : [ {
+    "id" : "q001",
+    "question" : "Which of the following are vector quantities?",
+    "explanation" : "Velocity and acceleration have both magnitude and direction.",
+    "difficulty" : 2,
+    "tags" : [ "physics", "vectors" ],
+    "objectives" : [ "CONFORMANCE.MULTIPLE_SELECT" ],
+    "media" : [ ],
+    "variables" : { },
+    "metadata" : { },
+    "choices" : [ {
+      "id" : "A",
+      "text" : "Velocity",
+      "media" : [ ]
+    }, {
+      "id" : "B",
+      "text" : "Mass",
+      "media" : [ ]
+    }, {
+      "id" : "C",
+      "text" : "Acceleration",
+      "media" : [ ]
+    }, {
+      "id" : "D",
+      "text" : "Temperature",
+      "media" : [ ]
+    } ],
+    "answer" : [ "A", "C" ],
+    "type" : "multiple_select"
+  }, {
+    "id" : "q002",
+    "question" : "An object moving at constant velocity has zero acceleration.",
+    "explanation" : "Constant velocity means the velocity is not changing, so the acceleration is zero.",
+    "difficulty" : 1,
+    "tags" : [ "physics", "kinematics" ],
+    "objectives" : [ "CONFORMANCE.TRUE_FALSE" ],
+    "media" : [ ],
+    "variables" : { },
+    "metadata" : { },
+    "choices" : [ {
+      "id" : "true",
+      "text" : "True",
+      "media" : [ ]
+    }, {
+      "id" : "false",
+      "text" : "False",
+      "media" : [ ]
+    } ],
+    "answer" : "true",
+    "type" : "true_false"
+  }, {
+    "id" : "q003",
+    "question" : "Name the SI unit of force.",
+    "explanation" : "The SI unit of force is the newton, symbol N.",
+    "difficulty" : 1,
+    "tags" : [ "physics", "units" ],
+    "objectives" : [ "CONFORMANCE.SHORT_ANSWER" ],
+    "media" : [ ],
+    "variables" : { },
+    "metadata" : { },
+    "answer" : [ "newton", "Newton", "N" ],
+    "type" : "short_answer"
+  }, {
+    "id" : "q004",
+    "question" : "The SI unit of electric current is the {{blank}}.",
+    "explanation" : "The SI base unit of electric current is the ampere, symbol A.",
+    "difficulty" : 1,
+    "tags" : [ "physics", "units" ],
+    "objectives" : [ "CONFORMANCE.FILL_BLANK" ],
+    "media" : [ ],
+    "variables" : { },
+    "metadata" : { },
+    "answer" : [ "ampere", "Ampere", "amp", "A" ],
+    "type" : "fill_in_the_blank"
+  }, {
+    "id" : "q005",
+    "question" : "A car travels $100\\,\\mathrm{m}$ in $5\\,\\mathrm{s}$. What is its average speed in $\\mathrm{m/s}$?",
+    "explanation" : "Average speed is distance divided by elapsed time: $100/5=20\\,\\mathrm{m/s}$.",
+    "difficulty" : 1,
+    "tags" : [ "physics", "kinematics" ],
+    "objectives" : [ "CONFORMANCE.NUMERICAL" ],
+    "media" : [ ],
+    "variables" : { },
+    "metadata" : { },
+    "answer" : {
+      "value" : 20,
+      "tolerance" : 0.1,
+      "unit" : "m/s"
+    },
+    "type" : "numerical"
+  } ],
+  "format_version" : "0.1"
+}
+]]></system-out>
+  </testcase>
+  <testcase name="writesAndReadsDynamicAndMediaFixture" classname="org.scivault.qf.QfWriterTest" time="0.007">
+    <system-out><![CDATA[
+=== QfWriter: dynamic-and-media.json ===
+Temporary file: /tmp/scivault-qf-writer-dynamic-11204200272276278585.json
+
+{
+  "format" : "SciVault-QF",
+  "metadata" : {
+    "id" : "org.scivault.conformance.dynamic-and-media",
+    "title" : "Dynamic and Media Conformance Test",
+    "author" : "SciVault",
+    "license" : "CC0-1.0",
+    "version" : "1.0",
+    "language" : "en-US",
+    "description" : "Valid SciVault-QF 0.1 question set exercising dynamic variables, calculated answers, media references, and extensions.",
+    "created" : "2026-08-19T12:30:00-06:00",
+    "tags" : [ "conformance", "dynamic", "media" ]
+  },
+  "questions" : [ {
+    "id" : "q001",
+    "question" : "An object starts from rest and accelerates at {{a}} m/s^2 for {{t}} s. What is its final speed?",
+    "explanation" : "For an object starting from rest, $v=at$. Substitute the generated values of $a$ and $t$.",
+    "difficulty" : 3,
+    "tags" : [ "physics", "kinematics", "dynamic" ],
+    "objectives" : [ "CONFORMANCE.DYNAMIC_NUMERICAL" ],
+    "media" : [ ],
+    "variables" : {
+      "a" : {
+        "min" : 1,
+        "max" : 5,
+        "step" : 1,
+        "type" : "integer"
+      },
+      "t" : {
+        "min" : 2,
+        "max" : 10,
+        "step" : 1,
+        "type" : "integer"
+      }
+    },
+    "metadata" : { },
+    "answer" : {
+      "expression" : "a * t",
+      "tolerance" : 0.01,
+      "unit" : "m/s"
+    },
+    "type" : "numerical"
+  }, {
+    "id" : "q002",
+    "question" : "Which diagram represents the situation described?",
+    "explanation" : "Diagram B is designated as the correct answer for this conformance fixture.",
+    "difficulty" : 2,
+    "tags" : [ "conformance", "media" ],
+    "objectives" : [ "CONFORMANCE.MEDIA" ],
+    "media" : [ {
+      "id" : "prompt-diagram",
+      "src" : "media/reference-diagram.svg",
+      "type" : "image",
+      "alt" : "Reference diagram used by the SciVault-QF conformance test.",
+      "caption" : "Conformance-test reference diagram",
+      "license" : "CC0-1.0"
+    } ],
+    "variables" : { },
+    "metadata" : { },
+    "extensions" : {
+      "empty" : false,
+      "org.scivault.peer_instruction" : {
+        "recommended_discussion_time" : 120
+      }
+    },
+    "choices" : [ {
+      "id" : "A",
+      "text" : "Diagram A",
+      "media" : [ ]
+    }, {
+      "id" : "B",
+      "text" : "Diagram B",
+      "media" : [ ]
+    }, {
+      "id" : "C",
+      "text" : "Diagram C",
+      "media" : [ ]
+    } ],
+    "answer" : "B",
+    "type" : "multiple_choice"
+  } ],
+  "format_version" : "0.1"
+}
+]]></system-out>
+  </testcase>
+  <testcase name="writesAndReadsBasicMultipleChoiceFixture" classname="org.scivault.qf.QfWriterTest" time="0.004">
+    <system-out><![CDATA[
+=== QfWriter: basic-multiple-choice.json ===
+Temporary file: /tmp/scivault-qf-writer-10594146966988417989.json
+
+{
+  "format" : "SciVault-QF",
+  "metadata" : {
+    "id" : "org.scivault.conformance.basic-multiple-choice",
+    "title" : "Basic Multiple-Choice Conformance Test",
+    "author" : "SciVault",
+    "license" : "CC0-1.0",
+    "version" : "1.0",
+    "language" : "en-US",
+    "description" : "Minimal valid SciVault-QF 0.1 question set containing one multiple-choice question.",
+    "created" : "2026-08-19T12:28:00-06:00",
+    "tags" : [ "conformance", "multiple-choice" ]
+  },
+  "questions" : [ {
+    "id" : "q001",
+    "question" : "What is $2+2$?",
+    "explanation" : "$2+2=4$.",
+    "difficulty" : 0,
+    "tags" : [ "math", "arithmetic" ],
+    "objectives" : [ "CONFORMANCE.BASIC.MC" ],
+    "media" : [ ],
+    "variables" : { },
+    "settings" : {
+      "shuffle_choices" : true
+    },
+    "metadata" : { },
+    "choices" : [ {
+      "id" : "A",
+      "text" : "3",
+      "media" : [ ]
+    }, {
+      "id" : "B",
+      "text" : "4",
+      "media" : [ ]
+    }, {
+      "id" : "C",
+      "text" : "5",
+      "media" : [ ]
+    } ],
+    "answer" : "B",
+    "type" : "multiple_choice"
+  } ],
+  "format_version" : "0.1"
+}
+]]></system-out>
+  </testcase>
 </testsuite>

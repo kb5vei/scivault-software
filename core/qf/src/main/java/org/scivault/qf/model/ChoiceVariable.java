@@ -7,7 +7,7 @@ import java.util.List;
 
 public class ChoiceVariable extends Variable {
 
-    private List<JsonNode> choices = new ArrayList<>();
+    private List<JsonNode> values = new ArrayList<>();
 
     public ChoiceVariable() {
     }
@@ -17,11 +17,11 @@ public class ChoiceVariable extends Variable {
         return "choice";
     }
 
-    public List<JsonNode> getChoices() {
-        return choices;
+    public List<JsonNode> getValues() {
+        return values;
     }
 
-    public void setChoices(List<JsonNode> choices) {
-        this.choices = choices;
+    public void setValues(List<JsonNode> values) {
+        this.values = values;
     }
 }

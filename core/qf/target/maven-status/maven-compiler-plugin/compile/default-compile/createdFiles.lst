@@ -8,6 +8,7 @@ org/scivault/qf/model/ChoiceQuestion.class
 org/scivault/qf/QfPackageManifest.class
 org/scivault/qf/QfReader.class
 org/scivault/qf/model/NumericalQuestion.class
+org/scivault/qf/QfPackagePath.class
 org/scivault/qf/model/TrueFalseQuestion.class
 org/scivault/qf/model/Choice.class
 org/scivault/qf/ValidationResult.class

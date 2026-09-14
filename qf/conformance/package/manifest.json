@@ -43,6 +43,12 @@
       "description": "Manifest content path attempts to traverse outside the package root."
     },
     {
+  "file": "invalid/unsafe-entry.sqf",
+  "expected": "invalid",
+  "finding": "PACKAGE_UNSAFE_PATH",
+  "description": "Package contains an unsafe ZIP entry path."
+     },
+    {
       "file": "invalid/missing-media.sqf",
       "expected": "invalid",
       "finding": "PACKAGE_MISSING_MEDIA",
