@@ -197,10 +197,7 @@
           "$ref": "#/$defs/questionSettings"
         },
 
-        "metadata": {
-          "type": "object",
-          "additionalProperties": true
-        },
+      
 
         "extensions": {
           "$ref": "#/$defs/extensions"

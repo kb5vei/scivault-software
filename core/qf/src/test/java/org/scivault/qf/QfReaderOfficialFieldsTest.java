@@ -1,6 +1,5 @@
 package org.scivault.qf;
 
-import com.fasterxml.jackson.databind.JsonNode;
 import org.junit.jupiter.api.Test;
 import org.scivault.qf.model.Media;
 import org.scivault.qf.model.Question;
@@ -8,7 +7,6 @@ import org.scivault.qf.model.QuestionBank;
 
 import java.nio.file.Files;
 import java.nio.file.Path;
-import java.util.Map;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -35,10 +33,6 @@ public class QfReaderOfficialFieldsTest {
                 + "      \"question\": \"What is the SI unit of force?\",\n"
                 + "      \"answer\": \"newton\",\n"
                 + "      \"hint\": \"Think of Newton's second law.\",\n"
-                + "      \"metadata\": {\n"
-                + "        \"source\": \"teacher-created\",\n"
-                + "        \"reviewed\": true\n"
-                + "      },\n"
                 + "      \"media\": [\n"
                 + "        {\n"
                 + "          \"type\": \"image\",\n"
@@ -80,20 +74,6 @@ public class QfReaderOfficialFieldsTest {
             assertEquals(
                     "Think of Newton's second law.",
                     question.getHint()
-            );
-
-            Map<String, JsonNode> metadata =
-                    question.getMetadata();
-
-            assertNotNull(metadata);
-
-            assertEquals(
-                    "teacher-created",
-                    metadata.get("source").asText()
-            );
-
-            assertTrue(
-                    metadata.get("reviewed").asBoolean()
             );
 
             assertEquals(

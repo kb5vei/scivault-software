@@ -18,11 +18,11 @@
 \contentsline {section}{\numberline {14}Multiple-Select Questions}{10}{section.14}%
 \contentsline {section}{\numberline {15}True/False Questions}{11}{section.15}%
 \contentsline {section}{\numberline {16}Short-Answer Questions}{11}{section.16}%
-\contentsline {section}{\numberline {17}Fill-in-the-Blank Questions}{12}{section.17}%
+\contentsline {section}{\numberline {17}Fill-in-the-Blank Questions}{11}{section.17}%
 \contentsline {section}{\numberline {18}Numerical Questions}{12}{section.18}%
-\contentsline {section}{\numberline {19}Hints and Explanations}{13}{section.19}%
+\contentsline {section}{\numberline {19}Hints and Explanations}{12}{section.19}%
 \contentsline {section}{\numberline {20}Media}{13}{section.20}%
-\contentsline {section}{\numberline {21}Dynamic Questions}{14}{section.21}%
+\contentsline {section}{\numberline {21}Dynamic Questions}{13}{section.21}%
 \contentsline {subsection}{\numberline {21.1}Integer Variables}{14}{subsection.21.1}%
 \contentsline {subsection}{\numberline {21.2}Decimal Variables}{14}{subsection.21.2}%
 \contentsline {subsection}{\numberline {21.3}Choice Variables}{14}{subsection.21.3}%
@@ -33,7 +33,7 @@
 \contentsline {section}{\numberline {26}Validation}{16}{section.26}%
 \contentsline {subsection}{\numberline {26.1}Validation Severity}{16}{subsection.26.1}%
 \contentsline {subsection}{\numberline {26.2}Structural Errors}{16}{subsection.26.2}%
-\contentsline {subsection}{\numberline {26.3}Semantic Errors}{17}{subsection.26.3}%
+\contentsline {subsection}{\numberline {26.3}Semantic Errors}{16}{subsection.26.3}%
 \contentsline {subsection}{\numberline {26.4}Warnings}{17}{subsection.26.4}%
 \contentsline {subsection}{\numberline {26.5}Validation Findings}{17}{subsection.26.5}%
 \contentsline {section}{\numberline {27}Unsupported Features}{18}{section.27}%

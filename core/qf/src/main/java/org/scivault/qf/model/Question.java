@@ -60,9 +60,6 @@ public abstract class Question {
 
     private QuestionSettings settings;
 
-    private Map<String, JsonNode> metadata =
-            new LinkedHashMap<>();
-
     private Extensions extensions;
 
     /*
@@ -157,15 +154,6 @@ public abstract class Question {
     public void setSettings(
             QuestionSettings settings) {
         this.settings = settings;
-    }
-
-    public Map<String, JsonNode> getMetadata() {
-        return metadata;
-    }
-
-    public void setMetadata(
-            Map<String, JsonNode> metadata) {
-        this.metadata = metadata;
     }
 
     public Extensions getExtensions() {
