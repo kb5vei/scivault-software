@@ -31,6 +31,12 @@
       "description": "Package manifest omits the required content field."
     },
     {
+  "file": "invalid/extra-manifest-property.sqf",
+  "expected": "invalid",
+  "finding": "PACKAGE_INVALID_MANIFEST",
+  "description": "Package manifest contains a property not permitted by the SciVault-QF 0.1 package manifest."
+},
+    {
       "file": "invalid/missing-content.sqf",
       "expected": "invalid",
       "finding": "PACKAGE_MISSING_CONTENT",

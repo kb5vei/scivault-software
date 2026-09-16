@@ -13,7 +13,12 @@ import java.util.zip.ZipFile;
 
 public final class QfPackageValidator {
 
-    private static final ObjectMapper MAPPER = new ObjectMapper();
+    private static final ObjectMapper MAPPER =
+        new ObjectMapper()
+                .configure(
+                        com.fasterxml.jackson.databind.DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES,
+                        true
+                );
 
     private QfPackageValidator() {
     }

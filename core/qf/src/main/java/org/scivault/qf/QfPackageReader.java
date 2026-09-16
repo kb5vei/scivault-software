@@ -47,6 +47,13 @@ public final class QfPackageReader {
                 );
             }
 
+            if (!QfPackagePath.isSafe(contentPath)) {
+                throw new IOException(
+                        "Unsafe package content path: "
+                                + contentPath
+                );
+            }
+
             ZipEntry contentEntry =
                     zip.getEntry(contentPath);
 

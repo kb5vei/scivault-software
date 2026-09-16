@@ -302,6 +302,60 @@ public class QfPackageWriterTest {
             );
         }
     }
+    @Test
+void writerRejectsEmptyPathComponent() throws Exception {
+
+    Path sourcePackage =
+            PACKAGE_ROOT.resolve(
+                    "valid/minimal.sqf"
+            );
+
+    QuestionBank bank =
+            QfPackageReader.read(sourcePackage);
+
+    Path resource =
+            java.nio.file.Files.createTempFile(
+                    "scivault-resource-",
+                    ".svg"
+            );
+
+    Path output =
+            java.nio.file.Files.createTempFile(
+                    "scivault-package-",
+                    ".sqf"
+            );
+
+    try {
+
+        java.util.Map<String, Path> resources =
+                java.util.Map.of(
+                        "media//image.svg",
+                        resource
+                );
+
+        IOException exception =
+                assertThrows(
+                        IOException.class,
+                        () -> QfPackageWriter.write(
+                                bank,
+                                output,
+                                resources
+                        )
+                );
+
+        assertTrue(
+                exception.getMessage()
+                        .contains(
+                                "Unsafe package resource path"
+                        )
+        );
+
+    } finally {
+
+        java.nio.file.Files.deleteIfExists(resource);
+        java.nio.file.Files.deleteIfExists(output);
+    }
+}
 
     private static Path findPackageRoot() {
 

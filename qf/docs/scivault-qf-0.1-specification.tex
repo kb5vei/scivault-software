@@ -237,6 +237,10 @@
 		Package-relative path to the SciVault-QF JSON document. \\ \hline
 		
 	\end{longtable}
+
+	Version 0.1 package manifests shall contain only the fields defined above.
+	Additional properties are not permitted.
+	
 	
 	Version 0.1 packages should normally use \texttt{questions.json} as the
 	content filename. Readers shall use the \texttt{content} field rather than
@@ -254,14 +258,20 @@
 	Forward slashes shall be used as path separators regardless of the host
 	operating system.
 	
-	Package paths:
+Package paths:
+
+\begin{itemize}
+	\item shall not be absolute;
+	\item shall not begin with \texttt{/};
+	\item shall not contain backslashes;
+	\item shall not contain an empty path component;
+	\item shall not contain a path component equal to \texttt{.};
+	\item shall not contain a path component equal to \texttt{..}; and
+	\item shall identify a unique archive entry.
+\end{itemize}
 	
-	\begin{itemize}
-		\item shall not be absolute;
-		\item shall not begin with \texttt{/};
-		\item shall not contain a path component equal to \texttt{..}; and
-		\item shall identify a unique archive entry.
-	\end{itemize}
+	Every archive entry path shall satisfy these requirements, including entries
+	that are not referenced by the package manifest or SciVault-QF document.
 	
 	Duplicate ZIP entry names are invalid.
 	
@@ -293,6 +303,11 @@
 	Subdirectories within \texttt{media/} are permitted. Their organization is
 	not semantically significant; the \texttt{src} field is the authoritative
 	location of the referenced resource.
+	
+	External media references, such as HTTPS URLs, are not package resources
+	and need not correspond to archive entries. Package validation shall require
+	only local media references to resolve to entries contained in the package.
+	
 	
 	% ============================================================
 	\section{Document Structure}
@@ -1034,6 +1049,13 @@
 	
 	Package validation additionally verifies the package manifest, archive paths,
 	contained document, and local resource references.
+	
+	Package validation and SciVault-QF document validation are logically distinct.
+	A conforming package nevertheless requires the SciVault-QF document referenced
+	by its manifest to conform to SciVault-QF 0.1.
+	
+	Resources contained in a package but not referenced by the SciVault-QF document
+	may produce a warning but do not by themselves make the package invalid.
 	
 	\subsection{Validation Severity}
 	

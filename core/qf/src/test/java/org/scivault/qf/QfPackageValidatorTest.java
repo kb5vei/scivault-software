@@ -155,7 +155,21 @@ void packageWithMediaIsValid() {
                 "PACKAGE_MISSING_CONTENT"
         );
     }
+@Test
+void extraManifestPropertyIsInvalid() {
+    ValidationResult result = QfPackageValidator.validate(
+            PACKAGE_FIXTURES.resolve(
+                    "invalid/extra-manifest-property.sqf"
+            )
+    );
 
+    assertFalse(result.isValid());
+
+    assertHasFinding(
+            result,
+            "PACKAGE_INVALID_MANIFEST"
+    );
+}
     private static void assertHasFinding(
             ValidationResult result,
             String code) {

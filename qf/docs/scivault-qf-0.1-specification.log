@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.21 (TeX Live 2020) (preloaded format=pdflatex 2021.1.11)  16 SEP 2026 08:11
+This is pdfTeX, Version 3.14159265-2.6-1.40.21 (TeX Live 2020) (preloaded format=pdflatex 2021.1.11)  16 SEP 2026 09:10
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -514,57 +514,49 @@ Overfull \hbox (1.94012pt too wide) in paragraph at lines 226--226
  []
 
 [5]
-Overfull \hbox (1.94012pt too wide) in paragraph at lines 322--322
+Overfull \hbox (1.94012pt too wide) in paragraph at lines 337--337
 []|\T1/lmr/bx/n/10.95 Required| 
  []
 
 [6]
-Overfull \hbox (1.94012pt too wide) in paragraph at lines 374--374
+Overfull \hbox (1.94012pt too wide) in paragraph at lines 389--389
 []|\T1/lmr/bx/n/10.95 Required| 
  []
 
 
-Overfull \hbox (19.74158pt too wide) in paragraph at lines 378--378
+Overfull \hbox (19.74158pt too wide) in paragraph at lines 393--393
 []|\T1/lmr/m/n/10.95 (-20) Recommended| 
  []
 
 [7] [8] [9] [10] [11] [12] [13] [14] [15]
-Underfull \vbox (badness 10000) detected at line 1054
+Underfull \vbox (badness 10000) detected at line 1076
  []
 
 [16] [17] [18]
-Underfull \vbox (badness 10000) detected at line 1229
+Underfull \vbox (badness 10000) detected at line 1251
  []
 
 [19] [20]
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 1359.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 1381.
  [21]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 1359.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 1381.
  (./scivault-qf-0.1-specification.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 1359.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 1359.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 1381.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 1381.
 
-
-
-Package rerunfilecheck Warning: File `scivault-qf-0.1-specification.out' has ch
-anged.
-(rerunfilecheck)                Rerun to get outlines right
-(rerunfilecheck)                or use package `bookmark'.
-
-Package rerunfilecheck Info: Checksums for `scivault-qf-0.1-specification.out':
-
-(rerunfilecheck)             Before: B12ACA482E00E61EC18F8E59BC0FB3F2;6456
-(rerunfilecheck)             After:  077C30D0850E2A25511905208B33F633;2673.
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 1359.
+Package rerunfilecheck Info: File `scivault-qf-0.1-specification.out' has not c
+hanged.
+(rerunfilecheck)             Checksum: 077C30D0850E2A25511905208B33F633;2673.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 1381.
  ) 
 Here is how much of TeX's memory you used:
- 10338 strings out of 482555
- 157870 string characters out of 5952145
- 595779 words of memory out of 5000000
- 25328 multiletter control sequences out of 15000+600000
- 581766 words of font info for 82 fonts, out of 8000000 for 9000
+ 10341 strings out of 482555
+ 157897 string characters out of 5952145
+ 609808 words of memory out of 5000000
+ 25327 multiletter control sequences out of 15000+600000
+ 581932 words of font info for 84 fonts, out of 8000000 for 9000
  14 hyphenation exceptions out of 8191
- 34i,6n,42p,335b,1818s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 34i,6n,42p,217b,1822s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/usr/share/texlive/texmf-dist/fonts/enc/dvips/lm/lm-ec.enc}{/usr/share/texli
 ve/texmf-dist/fonts/enc/dvips/lm/lm-ts1.enc}</usr/share/texlive/texmf-dist/font
 s/type1/public/lm/lmbx10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/
@@ -573,7 +565,7 @@ usr/share/texlive/texmf-dist/fonts/type1/public/lm/lmr12.pfb></usr/share/texliv
 e/texmf-dist/fonts/type1/public/lm/lmr17.pfb></usr/share/texlive/texmf-dist/fon
 ts/type1/public/lm/lmtk10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public
 /lm/lmtt10.pfb>
-Output written on scivault-qf-0.1-specification.pdf (21 pages, 263621 bytes).
+Output written on scivault-qf-0.1-specification.pdf (21 pages, 264077 bytes).
 PDF statistics:
  835 PDF objects out of 1000 (max. 8388607)
  797 compressed objects within 8 object streams

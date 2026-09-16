@@ -163,6 +163,29 @@ public class QfPackageReaderTest {
                         )
         );
     }
+    @Test
+void rejectsUnsafeContentPath() {
+
+    Path packagePath =
+            PACKAGE_ROOT.resolve(
+                    "invalid/unsafe-path.sqf"
+            );
+
+    IOException exception =
+            assertThrows(
+                    IOException.class,
+                    () -> QfPackageReader.read(
+                            packagePath
+                    )
+            );
+
+    assertTrue(
+            exception.getMessage()
+                    .contains(
+                            "Unsafe package content path"
+                    )
+    );
+}
 
     private static Path findPackageRoot() {
 

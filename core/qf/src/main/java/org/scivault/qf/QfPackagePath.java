@@ -37,13 +37,14 @@ final class QfPackagePath {
             return false;
         }
 
-        // Reject current-directory and parent-directory
+        // Reject empty, current-directory, and parent-directory
         // path components.
-        String[] components = path.split("/");
+        String[] components = path.split("/", -1);
 
         for (String component : components) {
 
-            if (".".equals(component)
+            if (component.isEmpty()
+                    || ".".equals(component)
                     || "..".equals(component)) {
 
                 return false;
