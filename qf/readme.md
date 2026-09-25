@@ -1,8 +1,8 @@
 # SciVault-QF
 
-**SciVault-QF (SciVault Question Format)** is an open, machine-readable format for storing educational questions and question banks.
+**SciVault-QF (SciVault Question Format)** is an open, implementation-independent format for storing and exchanging educational questions and question banks.
 
-SciVault-QF is part of the SciVault Software project and is designed to provide a common question format that can be shared among SciVault applications and other compatible educational software.
+SciVault-QF is part of the SciVault Software project. It provides a common question representation that can be shared among SciVault applications and other compatible educational software.
 
 The current specification version is **SciVault-QF 0.1**.
 
@@ -10,91 +10,77 @@ The current specification version is **SciVault-QF 0.1**.
 
 SciVault-QF is designed to be:
 
-- open and implementation-independent;
-- human-readable;
-- machine-validated;
-- suitable for both simple and advanced educational questions;
-- capable of representing scientific and mathematical content;
-- usable by assessment, peer-instruction, and question-bank software;
-- extensible without requiring proprietary software.
+* open and implementation-independent;
+* human-readable;
+* machine-validated;
+* suitable for both simple and advanced educational questions;
+* capable of representing scientific and mathematical content;
+* usable by assessment, peer-instruction, and question-bank software;
+* extensible without requiring proprietary software.
 
-The format uses JSON encoded as UTF-8.
+Standalone SciVault-QF documents use JSON encoded as UTF-8.
+
+SciVault-QF also defines the `.sqf` package format for distributing a question set together with local resources such as images.
 
 ## Features
 
 SciVault-QF 0.1 supports:
 
-- multiple-choice questions;
-- multiple-select questions;
-- true/false questions;
-- short-answer questions;
-- fill-in-the-blank questions;
-- numerical questions;
-- LaTeX mathematical and scientific notation;
-- question difficulty on a 0–10 scale;
-- tags and learning objectives;
-- explanations;
-- dynamic numerical variables;
-- calculated answers;
-- answer tolerances and units;
-- media resources;
-- extension data for non-core features.
+* multiple-choice questions;
+* multiple-select questions;
+* true/false questions;
+* short-answer questions;
+* fill-in-the-blank questions;
+* numerical questions;
+* LaTeX mathematical and scientific notation;
+* question difficulty on a 0–10 scale;
+* tags and learning objectives;
+* explanations and hints;
+* dynamic integer, decimal, and choice variables;
+* calculated numerical answers;
+* answer tolerances and units;
+* image, audio, and video resources;
+* question and choice media;
+* choice feedback;
+* application-specific extension data;
+* standalone JSON question sets; and
+* portable `.sqf` packages containing a question set and its local resources.
 
-## Directory Structure
+## Specification
 
-The SciVault-QF portion of the repository is organized as follows:
+The human-readable SciVault-QF 0.1 specification is located in:
 
 ```text
-qf/
-├── README.md
-│
-├── schema/
-│   └── scivault-qf-0.1.schema.json
-│
-├── conformance/
-│   ├── manifest.json
-│   ├── valid/
-│   ├── valid-with-warnings/
-│   └── invalid/
-│
-└── validator/
-    ├── pom.xml
-    ├── README.md
-    └── src/
+qf/docs/scivault-qf-0.1-specification.tex
 ```
 
-### `schema/`
+A compiled PDF is also maintained in:
 
-Contains the machine-readable JSON Schema for SciVault-QF.
+```text
+qf/docs/scivault-qf-0.1-specification.pdf
+```
 
-The schema validates the structural requirements of a SciVault-QF document.
+The specification defines both standalone SciVault-QF documents and SciVault-QF packages.
 
-### `conformance/`
+## Schemas
 
-Contains known-good and known-bad SciVault-QF files used to test implementations.
+The JSON Schema for standalone SciVault-QF 0.1 documents is:
 
-The conformance suite currently contains **20 test fixtures** divided into:
+```text
+qf/schema/scivault-qf-0.1.schema.json
+```
 
-- valid files;
-- valid files that should produce warnings;
-- invalid files that should produce errors.
+The JSON Schema for SciVault-QF 0.1 package manifests is:
 
-`manifest.json` defines the expected result for every fixture.
+```text
+qf/schema/scivault-qf-package-0.1.schema.json
+```
 
-### `validator/`
-
-Contains the Java reference validator.
-
-The reference validator performs both:
-
-1. JSON Schema validation; and
-2. semantic validation that cannot conveniently be expressed by JSON Schema alone.
-
-Examples of semantic checks include duplicate question IDs, undefined variables, missing media resources, invalid answer references, and unsafe expressions.
+JSON Schema handles structural validation. Additional semantic requirements are defined by the specification and checked by conforming implementations.
 
 ## Basic Document Structure
 
-A SciVault-QF file contains document metadata and an array of questions.
+A standalone SciVault-QF document contains set metadata and an array of questions.
 
 For example:
 
@@ -157,121 +143,177 @@ For example:
 }
 ```
 
+## SciVault-QF Packages
+
+SciVault-QF 0.1 defines a portable package format using the `.sqf` filename extension.
+
+An `.sqf` file is a ZIP archive containing exactly one SciVault-QF question set together with an optional collection of local resources.
+
+A minimal package contains:
+
+```text
+example-set.sqf
+├── manifest.json
+└── questions.json
+```
+
+A package containing media might contain:
+
+```text
+example-set.sqf
+├── manifest.json
+├── questions.json
+└── media/
+    ├── diagram.svg
+    ├── graph.png
+    └── setup-photo.jpg
+```
+
+The package manifest identifies the contained SciVault-QF document:
+
+```json
+{
+  "format": "SciVault-QF",
+  "format_version": "0.1",
+  "content": "questions.json"
+}
+```
+
+Package paths are relative to the package root and use forward slashes.
+
+Unsafe paths, duplicate archive entries, missing package content, missing referenced local resources, and invalid manifests make a package invalid.
+
+Resources present in a package but not referenced by the SciVault-QF document may produce a warning but do not by themselves make the package invalid.
+
+External media references such as HTTPS URLs are not package resources and do not need to correspond to archive entries.
+
+## Conformance Suites
+
+The SciVault-QF repository contains separate conformance suites for standalone documents and packages.
+
+### Document Conformance
+
+The document suite is located in:
+
+```text
+qf/conformance/
+```
+
+It contains fixtures divided into:
+
+```text
+valid/
+valid-with-warnings/
+invalid/
+```
+
+Expected results are defined by:
+
+```text
+qf/conformance/manifest.json
+```
+
+The SciVault-QF 0.1 document conformance suite currently contains **20 fixtures**.
+
+### Package Conformance
+
+The package suite is located in:
+
+```text
+qf/conformance/package/
+```
+
+Expected package results are defined by:
+
+```text
+qf/conformance/package/manifest.json
+```
+
+The SciVault-QF 0.1 package conformance suite currently contains **11 fixtures**.
+
+The current reference implementation passes:
+
+```text
+20/20 document conformance tests
+11/11 package conformance tests
+```
+
+## Java Reference Implementation
+
+SciVault-QF itself does **not** depend on Java.
+
+The current Java reference implementation is located in:
+
+```text
+core/qf/
+```
+
+It provides reusable support for:
+
+* reading SciVault-QF documents;
+* writing SciVault-QF documents;
+* JSON Schema validation;
+* semantic validation;
+* restricted dynamic-expression validation;
+* reading `.sqf` packages;
+* writing `.sqf` packages;
+* package validation; and
+* document and package conformance testing.
+
+The implementation currently targets Java 11.
+
+### Build and Test
+
+From:
+
+```text
+core/qf/
+```
+
+run:
+
+```bash
+mvn test
+```
+
+For verbose conformance output:
+
+```bash
+mvn test -Dqf.verbose=true
+```
+
+At the SciVault-QF 0.1 release checkpoint, the reference implementation passes:
+
+```text
+43/43 Maven tests
+20/20 document conformance tests
+11/11 package conformance tests
+```
+
 ## Validation
 
 A conforming SciVault-QF implementation should perform both structural and semantic validation.
 
-The official reference validator is located in:
+Structural validation includes requirements that can be represented directly in JSON Schema.
 
-```text
-qf/validator/
-```
+Semantic validation includes requirements such as:
 
-### Requirements
+* unique question IDs;
+* unique choice IDs within a question;
+* valid answer references;
+* valid true/false choice IDs;
+* valid variable ranges;
+* defined placeholder variables;
+* defined expression variables;
+* required fill-in-the-blank markers;
+* safe restricted expressions; and
+* existence of referenced local media.
 
-The reference validator requires:
+Warnings may identify potential authoring problems without making an otherwise conforming document invalid. Examples include missing recommended metadata and unused variables.
 
-- Java 11 or later;
-- Maven 3.6 or later.
+Package validation additionally checks the `.sqf` container, manifest, archive paths, package content, and local resource references.
 
-### Build the Validator
-
-From `qf/validator/`:
-
-```bash
-mvn clean package
-```
-
-This produces a self-contained executable JAR:
-
-```text
-target/scivault-qf-validator-0.1.0-all.jar
-```
-
-### Validate a Question File
-
-From `qf/validator/`:
-
-```bash
-java -jar target/scivault-qf-validator-0.1.0-all.jar \
-  validate ../conformance/valid/basic-multiple-choice.json \
-  --schema ../schema/scivault-qf-0.1.schema.json
-```
-
-A valid file will produce:
-
-```text
-VALID
-```
-
-Warnings may also be reported for valid files.
-
-Invalid files produce one or more error findings and a nonzero process exit status.
-
-### Machine-Readable Results
-
-Validation results can be returned as JSON:
-
-```bash
-java -jar target/scivault-qf-validator-0.1.0-all.jar \
-  validate example.json \
-  --schema ../schema/scivault-qf-0.1.schema.json \
-  --json
-```
-
-## Conformance Testing
-
-The complete SciVault-QF 0.1 conformance suite can be run with:
-
-```bash
-java -jar target/scivault-qf-validator-0.1.0-all.jar \
-  conformance ../conformance/manifest.json \
-  --schema ../schema/scivault-qf-0.1.schema.json
-```
-
-The SciVault-QF 0.1 reference implementation currently passes:
-
-```text
-20/20 conformance tests passed.
-```
-
-Other implementations of SciVault-QF should be able to use the same conformance suite.
-
-## Validation Findings
-
-Validation findings have a severity and stable code.
-
-For example:
-
-```json
-{
-  "severity": "error",
-  "code": "ANSWER_UNKNOWN_CHOICE"
-}
-```
-
-Current validation codes include examples such as:
-
-```text
-SCHEMA_VALIDATION_ERROR
-DUPLICATE_QUESTION_ID
-DUPLICATE_CHOICE_ID
-ANSWER_UNKNOWN_CHOICE
-INVALID_VARIABLE_RANGE
-UNDEFINED_VARIABLE
-UNUSED_VARIABLE
-MISSING_BLANK
-MISSING_MEDIA
-INVALID_TRUE_FALSE_CHOICES
-INVALID_EXPRESSION
-MISSING_EXPLANATION
-MISSING_OBJECTIVES
-MISSING_SET_ID
-```
-
-`error` findings make a document invalid.
-
-`warning` findings identify potential authoring problems but do not make an otherwise conforming document invalid.
+Package validation and SciVault-QF document validation are logically distinct. A conforming `.sqf` package nevertheless contains a SciVault-QF document that conforms to SciVault-QF 0.1.
 
 ## Dynamic Expressions
 
@@ -289,28 +331,13 @@ For example:
 
 Expressions are **not executable program code**.
 
-A SciVault-QF implementation must not pass expressions directly to a shell, JavaScript interpreter, Python interpreter, Java compiler, or other general-purpose execution environment.
+Implementations must not pass SciVault-QF expressions directly to a shell, JavaScript interpreter, Python interpreter, Java compiler, or other general-purpose execution environment.
 
-The SciVault-QF 0.1 reference validator currently recognizes a deliberately restricted expression syntax containing:
-
-- numeric literals;
-- variable names;
-- parentheses;
-- `+`;
-- `-`;
-- `*`;
-- `/`;
-- `%`;
-- `**`;
-- unary `+` and `-`.
-
-The expression language may be expanded and more formally specified in future versions.
+SciVault-QF 0.1 defines a deliberately restricted expression language suitable for mathematical calculations.
 
 ## Media
 
-Questions may reference media resources such as images.
-
-Local media paths are resolved relative to the directory containing the SciVault-QF JSON file.
+Questions and individual choices may reference media.
 
 For example:
 
@@ -325,67 +352,62 @@ For example:
 ]
 ```
 
-A validator should report a missing local resource as `MISSING_MEDIA`.
+Supported media types are:
+
+* `image`;
+* `audio`; and
+* `video`.
+
+For standalone documents, local media paths are resolved relative to the directory containing the SciVault-QF JSON document.
+
+For `.sqf` packages, local media paths are resolved relative to the package root.
+
+Images require an `alt` field. An empty `alt` string may be used when an image is intentionally decorative.
 
 ## Extensions
 
 SciVault-QF core objects are intentionally strict so that accidental or misspelled fields can be detected.
 
-Software-specific or experimental data should therefore be stored using the format's extension mechanism rather than by adding arbitrary fields to core objects.
+Application-specific or experimental information should use the format's `extensions` mechanism rather than adding arbitrary fields to core objects.
 
 This allows SciVault-QF to evolve while preserving interoperability.
 
 ## Compatibility
 
-SciVault-QF itself does **not** depend on Java.
+Because SciVault-QF is an implementation-independent format, compatible software may be written in Java, JavaScript or TypeScript, Python, C or C++, Rust, C#, Go, or any other language capable of processing JSON and ZIP archives.
 
-The format consists of JSON documents, a JSON Schema, and defined semantic rules.
-
-The Java validator is the project's reference implementation only.
-
-Other implementations may be written in languages such as:
-
-- JavaScript or TypeScript;
-- Python;
-- C or C++;
-- Rust;
-- C#;
-- Go;
-- or any other language capable of processing JSON.
-
-A compatible implementation should produce behavior consistent with the SciVault-QF specification and conformance suite.
+A compatible implementation should behave consistently with the SciVault-QF specification and conformance suites.
 
 ## Status
 
-SciVault-QF **0.1 is an early development specification**.
+SciVault-QF **0.1 is the initial version of the SciVault Question Format**.
 
-The format should not yet be considered frozen. Fields, validation rules, expression syntax, packaging conventions, and extension mechanisms may change before SciVault-QF 1.0.
+Version 0.1 defines the core question model, validation rules, dynamic variables and expressions, media representation, extension mechanism, standalone JSON representation, and `.sqf` package format.
 
-Backward compatibility becomes increasingly important as the specification approaches a stable release.
+Future versions may extend these capabilities while preserving clearly defined version boundaries.
 
 ## Related SciVault Components
 
-SciVault-QF is intended to provide the shared question representation used by the wider SciVault Software suite.
+SciVault-QF provides the shared question representation for the wider SciVault Software suite.
 
-Planned components include:
+Planned SciVault applications include:
 
-- Question Bank tools;
-- Test Generator;
-- Peer Instruction system.
+* Question Bank tools;
+* Test Generator;
+* Peer Instruction system.
 
-Keeping the question representation separate from individual applications allows the same question banks to be reused across multiple instructional tools.
+Keeping the question representation independent of individual applications allows the same question banks to be reused across multiple instructional tools.
 
 ## Contributing
 
-Contributions should preserve the interoperability goals of SciVault-QF.
-
-Changes to the core format should normally include:
+Changes to the SciVault-QF core format should normally include:
 
 1. an update to the human-readable specification;
-2. an update to the JSON Schema when applicable;
+2. an update to the appropriate JSON Schema when applicable;
 3. new or updated conformance fixtures;
-4. updates to `manifest.json`;
-5. corresponding reference-validator behavior; and
+4. updates to the corresponding conformance manifest;
+5. corresponding reference-implementation behavior; and
 6. tests demonstrating the intended behavior.
 
-A proposed format change should not be considered complete until the specification, schema, conformance suite, and reference implementation agree.
+A proposed format change should not be considered complete until the specification, schemas, conformance suites, and reference implementation agree.
+
